@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FES.SchulHardwareAusleihSystem.Models;
+using FES.SchulHardwareAusleihSystem.Interfaces;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController :  Controller, IHomeController
     {
         public IActionResult Index()
         {
