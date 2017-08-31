@@ -8,6 +8,6 @@ namespace FES.SchulHardwareAusleihSystem.Interfaces.Controller
 {
     public interface IProfilController
     {
-        IActionResult ShowProfile();
+        IActionResult Profil();
     }
 }

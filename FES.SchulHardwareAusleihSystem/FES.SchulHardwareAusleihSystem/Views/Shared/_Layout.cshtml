@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FES.SchulHardwareAusleihSystem</title>
+    <title>@ViewData["Title"] - FES</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,14 +26,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FES.SchulHardwareAusleihSystem</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FES</a>
+            </div>
+            <div>
+               
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>                    
+                    <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
+                    <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
+                    <li><a asp-area="" asp-controller="Reservierung" asp-action="Ausleihe">Ausleihe</a></li>
+                    <li><a asp-area="" asp-controller="DatenBank" asp-action="DatenBank">DatenBank</a></li>
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
+
             </div>
         </div>
     </nav>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FES.SchulHardwareAusleihSystem.Models;
-using FES.SchulHardwareAusleihSystem.Interfaces;
+using FES.SchulHardwareAusleihSystem.Interfaces.Controller;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
@@ -29,6 +29,7 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
 
             return View();
         }
+
 
         public IActionResult Error()
         {

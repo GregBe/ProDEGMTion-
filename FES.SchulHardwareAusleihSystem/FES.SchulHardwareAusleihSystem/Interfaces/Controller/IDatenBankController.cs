@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Interfaces.Controller
 {
-    public interface IDBController
+    public interface IDatenBankController
     {
         IActionResult DatenBank();
     }

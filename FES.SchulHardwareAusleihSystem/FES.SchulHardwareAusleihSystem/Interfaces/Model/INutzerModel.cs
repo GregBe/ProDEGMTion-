@@ -12,9 +12,9 @@ namespace FES.SchulHardwareAusleihSystem.Interfaces.Model
         /// <summary>
         /// Dieses Interface beinhaltet alles rund um den Nutzer
         /// </summary>
-        string Name { get; set; }
-        IdentityRole NutzerRolle { get; set; }
-        string Email { get; set; }
+        //string Name { get; set; }
+        //IdentityRole NutzerRolle { get; set; }
+        //string Email { get; set; }
 
     }
 }
