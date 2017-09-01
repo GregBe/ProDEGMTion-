@@ -9,3 +9,5 @@
 - 4 Klone das Repositor von ProDEGMTion in den Ordner eines lokalen Repositorys
 
 - 5 Fertig
+
+Wenn es zu Problemen mit dem Proxy kommt, hilft dieser [Link](https://stackoverflow.com/questions/783811/getting-git-to-work-with-a-proxy-server).

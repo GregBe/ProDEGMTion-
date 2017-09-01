@@ -36,7 +36,7 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Roles = };
                 IdentityResult result = await _nutzer.CreateAsync(user, model.Passwort);
                 if (result.Succeeded)
                 {

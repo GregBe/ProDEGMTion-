@@ -16,7 +16,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index">Hello @UserManager.GetUserName(User)!</a>
+                <a asp-controller="Manage" asp-action="Index">@UserManager.GetUserName(User)!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
