@@ -30,6 +30,8 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -60,9 +62,9 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+           
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -87,9 +89,14 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         {
             return View();
         }
-        public Task<IActionResult> Logout()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
+            //_logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

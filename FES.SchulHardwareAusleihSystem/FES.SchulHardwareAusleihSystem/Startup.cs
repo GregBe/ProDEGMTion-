@@ -54,7 +54,7 @@ namespace FES.SchulHardwareAusleihSystem
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
