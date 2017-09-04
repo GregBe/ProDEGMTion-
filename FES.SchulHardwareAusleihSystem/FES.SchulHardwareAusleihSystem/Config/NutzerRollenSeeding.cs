@@ -35,8 +35,7 @@ namespace FES.SchulHardwareAusleihSystem.Config
         /// <param name="app"> Benötigt den RoleManager des Services</param>
         public NutzerRollenSeeding(IApplicationBuilder app)
         {
-            _app = app;
-            
+            _app = app;     
         }
 
 

@@ -25,8 +25,9 @@ namespace FES.SchulHardwareAusleihSystem.Models.User
         [Compare("Passwort",  ErrorMessage ="Die Passwörter stimmen nicht überein")]
         public string ConfPasswort { get; set; }
 
-
-        public IdentityRole Role { get; set; } 
+        [Required]
+        [Display(Name ="Role")]
+        public string Role { get; set; } 
 
     }
 }

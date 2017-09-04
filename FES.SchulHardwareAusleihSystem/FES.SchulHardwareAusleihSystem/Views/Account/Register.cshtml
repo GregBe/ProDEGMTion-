@@ -35,13 +35,10 @@
                     <span asp-validation-for="ConfPasswort" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Role">
-                            <input asp-for="Role"/>
-                            @Html.DisplayNameFor(m => m.Role)
-                        </label>
-                    </div>
+                    <label asp-for="Role"></label>
+                    <input asp-for="Role" class="form-control" />
                 </div>
+
                 <div>
                     <button type="submit" class="btn btn-default">Register</button>
                 </div>
