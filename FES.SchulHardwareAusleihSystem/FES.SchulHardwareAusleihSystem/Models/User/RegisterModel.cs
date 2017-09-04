@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace FES.SchulHardwareAusleihSystem.Models.User
         [Display(Name = "ConfPasswort")]
         [Compare("Passwort",  ErrorMessage ="Die Passwörter stimmen nicht überein")]
         public string ConfPasswort { get; set; }
+
+
+        public IdentityRole Role { get; set; } 
 
     }
 }

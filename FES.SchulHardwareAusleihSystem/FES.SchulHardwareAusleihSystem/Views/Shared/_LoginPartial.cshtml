@@ -9,14 +9,25 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
         <ul class="nav navbar-nav">
             <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
-            <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
+            @User.
+            @if (User.IsInRole("Admin"))
+            {
+                <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
+
+            }
+            else
+            {
+
+                <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
+            }
+            
+ 
             <li><a asp-area="" asp-controller="Reservierung" asp-action="Ausleihe">Ausleihe</a></li>
             <li><a asp-area="" asp-controller="DatenBank" asp-action="DatenBank">DatenBank</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index">@UserManager.GetUserName(User)!</a>
+                <a asp-controller="Manage" asp-action="Index">@UserManager.GetUserName(User)</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
