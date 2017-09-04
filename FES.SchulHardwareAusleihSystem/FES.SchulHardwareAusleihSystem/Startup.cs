@@ -12,11 +12,14 @@ using FES.SchulHardwareAusleihSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using FES.SchulHardwareAusleihSystem.Models.User;
 using FES.SchulHardwareAusleihSystem.Data;
+using FES.SchulHardwareAusleihSystem.Config;
 
 namespace FES.SchulHardwareAusleihSystem
 {
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,12 +30,14 @@ namespace FES.SchulHardwareAusleihSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDbContext<DBContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=FES.Ausleihe"));
-            //services.AddIdentity<Nutzer, IdentityRole>().AddEntityFrameworkStores<DBContext>();
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddTransient<ApplicationUser>();
             // Add application services.
             //services.AddTransient<IEmailSender, EmailSender>();
 
@@ -40,7 +45,7 @@ namespace FES.SchulHardwareAusleihSystem
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             
             if (env.IsDevelopment())
@@ -62,6 +67,9 @@ namespace FES.SchulHardwareAusleihSystem
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            new NutzerRollenSeeding(app).Seed();
         }
     }
 }
