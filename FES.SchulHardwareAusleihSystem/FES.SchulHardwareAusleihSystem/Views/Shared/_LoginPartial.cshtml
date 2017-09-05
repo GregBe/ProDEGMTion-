@@ -13,11 +13,9 @@
             @if (User.IsInRole("Admin"))
             {
                 <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
-
             }
             else
             {
-
                 <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
             }
             

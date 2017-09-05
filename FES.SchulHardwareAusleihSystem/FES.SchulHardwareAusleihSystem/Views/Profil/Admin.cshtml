@@ -1,6 +1,97 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using FES.SchulHardwareAusleihSystem.Models.User;
+@model AdminModel
+
 @{
+    ViewData["Title"] = "Admin";
 }
-<h1>Admin</h1>
+
+<h2>Admin</h2>
+
+<h3>Geräte- und Nutzerliste</h3>
+<div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Test</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Hallo</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@*<div>
+    <table border="1">
+        <thead>
+            <tr>
+                @foreach (System.Data.DataColumn col in Model.Columns)
+                {
+                    <th>@col.Caption</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow row in Model.Rows)
+            {
+                <tr>
+                    @foreach (var cell in row.ItemArray)
+                    {
+                        if (cell != null)
+                        {
+                            <td>@cell.ToString()</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>*@
+
+
+
+
+<h3>Neuen Nutzer anlegen</h3>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form asp-controller="Account" asp-action="Admin" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="col-lg-8">
+                    <div class="col-xs-5">
+                        <div style="float: left" class="form-group">
+                            <label asp-for="NutzerName"></label>
+                            <input asp-for="NutzerName" class="form-control" />
+                            <span asp-validation-for="NutzerName" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div style="float: left" class="form-group">
+                            <label asp-for="NutzerPasswort"></label>
+                            <input asp-for="NutzerPasswort" class="form-control" />
+                            <span asp-validation-for="NutzerPasswort" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div style="float: left" class="form-group">
+                            <button type="submit" class="btn btn-default">Nutzer anlegen</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
