@@ -9,7 +9,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
         <ul class="nav navbar-nav">
             <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            @User.
+       
             @if (User.IsInRole("Admin"))
             {
                 <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
