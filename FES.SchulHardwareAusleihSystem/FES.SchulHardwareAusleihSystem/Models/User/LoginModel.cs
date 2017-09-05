@@ -1,4 +1,4 @@
-﻿using FES.SchulHardwareAusleihSystem.Interfaces.Model;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Models.User
 {
-    public class LoginModel: ILoginModel
+    public class LoginModel 
     {
         /// <summary>
         /// DataAnnotations werden benötigt um Felder zu markieren

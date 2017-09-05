@@ -1,14 +1,15 @@
-﻿using FES.SchulHardwareAusleihSystem.Interfaces.Controller;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FES.SchulHardwareAusleihSystem.Interfaces.Model;
+
 using Microsoft.AspNetCore.Mvc;
 using FES.SchulHardwareAusleihSystem.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using FES.SchulHardwareAusleihSystem.Models;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
@@ -36,8 +37,8 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email};
-                
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
                 IdentityResult result = await _nutzer.CreateAsync(user, model.Passwort);
                 if (result.Succeeded)
                 {
@@ -66,16 +67,16 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
-           
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Passwort,false, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Passwort, false, false);
                 if (result.Succeeded)
                 {
-                   // _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Profil","Profil");
+                    // _logger.LogInformation("User logged in.");
+                    return RedirectToAction("Profil", "Profil");
                 }
                 else
                 {

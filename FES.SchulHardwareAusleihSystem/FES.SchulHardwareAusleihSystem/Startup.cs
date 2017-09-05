@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
-using FES.SchulHardwareAusleihSystem.Interfaces.Model;
-using FES.SchulHardwareAusleihSystem.Models;
-using Microsoft.EntityFrameworkCore;
-using FES.SchulHardwareAusleihSystem.Models.User;
+using Microsoft.Extensions.Options;
 using FES.SchulHardwareAusleihSystem.Data;
-using FES.SchulHardwareAusleihSystem.Config;
+using FES.SchulHardwareAusleihSystem.Models;
+using FES.SchulHardwareAusleihSystem.Services;
+using FES.SchulHardwareAusleihSystem.Configuration;
 
 namespace FES.SchulHardwareAusleihSystem
 {
     public class Startup
     {
-
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,27 +31,27 @@ namespace FES.SchulHardwareAusleihSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            services.AddScoped<RoleManager<IdentityRole>>();
-            services.AddTransient<ApplicationUser>();
+
             // Add application services.
-            //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
 
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -59,16 +59,15 @@ namespace FES.SchulHardwareAusleihSystem
             }
 
             app.UseStaticFiles();
-            
+
             app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
             new NutzerRollenSeeding(app).Seed();
         }
     }

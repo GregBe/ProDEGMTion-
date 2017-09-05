@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
-    public class NutzerManagerController: Controller
+    public class NutzerManagerController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public NutzerManagerController(ApplicationDbContext dbContext )
+        public NutzerManagerController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -23,7 +23,7 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
             {
                 Users = _dbContext.Users.OrderBy(u => u.Email).ToList()
             };
-           
+
             return View(vm);
         }
     }

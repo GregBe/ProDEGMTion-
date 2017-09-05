@@ -1,4 +1,4 @@
-﻿using FES.SchulHardwareAusleihSystem.Interfaces.Controller;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
-    public class ReservierungController: Controller, IReservierungController
+    public class ReservierungController : Controller
     {
         public IActionResult Ausleihe()
         {

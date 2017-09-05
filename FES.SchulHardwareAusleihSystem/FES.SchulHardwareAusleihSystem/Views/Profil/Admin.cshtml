@@ -25,35 +25,35 @@
 
 
 @*<div>
-    <table border="1">
-        <thead>
-            <tr>
-                @foreach (System.Data.DataColumn col in Model.Columns)
-                {
-                    <th>@col.Caption</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (System.Data.DataRow row in Model.Rows)
-            {
+        <table border="1">
+            <thead>
                 <tr>
-                    @foreach (var cell in row.ItemArray)
+                    @foreach (System.Data.DataColumn col in Model.Columns)
                     {
-                        if (cell != null)
-                        {
-                            <td>@cell.ToString()</td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
+                        <th>@col.Caption</th>
                     }
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>*@
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (var cell in row.ItemArray)
+                        {
+                            if (cell != null)
+                            {
+                                <td>@cell.ToString()</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
 
 
 

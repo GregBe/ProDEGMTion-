@@ -1,15 +1,15 @@
-﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity
 @using FES.SchulHardwareAusleihSystem.Models.User;
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@if(SignInManager.IsSignedIn(User))
+@if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
         <ul class="nav navbar-nav">
             <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-       
+
             @if (User.IsInRole("Admin"))
             {
                 <li><a asp-area="" asp-controller="Profil" asp-action="Admin">Admin</a></li>
@@ -18,8 +18,8 @@
             {
                 <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
             }
-            
- 
+
+
             <li><a asp-area="" asp-controller="Reservierung" asp-action="Ausleihe">Ausleihe</a></li>
             <li><a asp-area="" asp-controller="DatenBank" asp-action="DatenBank">DatenBank</a></li>
         </ul>

@@ -1,5 +1,4 @@
-﻿using FES.SchulHardwareAusleihSystem.Interfaces.Controller;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,14 +7,14 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
-    public class ProfilController : Controller, IProfilController
+    public class ProfilController : Controller
     {
         [Authorize]
         public IActionResult Profil()
         {
             return View();
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();

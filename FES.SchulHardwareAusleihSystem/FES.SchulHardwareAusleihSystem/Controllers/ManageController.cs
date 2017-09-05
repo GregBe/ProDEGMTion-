@@ -1,8 +1,11 @@
-﻿using FES.SchulHardwareAusleihSystem.Models.Generell;
+﻿using FES.SchulHardwareAusleihSystem.Models;
+using FES.SchulHardwareAusleihSystem.Models.Generell;
+using FES.SchulHardwareAusleihSystem.Models.ManageViewModels;
 using FES.SchulHardwareAusleihSystem.Models.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Controllers
 {
-    public class ManageController: Controller
+    public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -31,7 +34,7 @@ namespace FES.SchulHardwareAusleihSystem.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-           // _emailSender = emailSender;
+            // _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
         }
