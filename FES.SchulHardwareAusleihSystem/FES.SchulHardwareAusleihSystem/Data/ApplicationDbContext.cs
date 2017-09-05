@@ -13,6 +13,7 @@ namespace FES.SchulHardwareAusleihSystem.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            //testc;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
