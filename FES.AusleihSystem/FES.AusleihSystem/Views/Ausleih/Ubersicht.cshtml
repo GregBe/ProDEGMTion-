@@ -1,0 +1,29 @@
+@model List<FES.AusleihSystem.ViewModels.ReservierungViewModel>
+
+
+
+<h2>Ubersicht</h2>
+@foreach (var reserver in Model)
+{
+    <form>
+            <div>
+                <ul>
+                    <li>No.: @reserver.ReservierungsNummer, Von: @reserver.ReservierungsBeginn,Bis.: @reserver.ReservierungsEnde</li>
+                    @foreach (var hw in reserver.GeraeteListe)
+                    {
+                        <div>
+                            <ul>
+                                <li>@hw.Name</li>
+                            </ul>
+                        </div>
+
+                    }
+                </ul>
+            </div>
+        </form>
+}
+
+
+
+
+

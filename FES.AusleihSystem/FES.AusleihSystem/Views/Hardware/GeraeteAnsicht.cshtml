@@ -1,0 +1,12 @@
+@model List<FES.AusleihSystem.ViewModels.GeraetViewModel>
+                                                       
+
+
+<h2>GeraeteAnsicht</h2>
+
+    @foreach (var ger in Model)
+    {
+        <li>@ger.Name, @ger.EAN</li>
+
+
+    }
