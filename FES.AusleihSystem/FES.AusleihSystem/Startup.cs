@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FES.AusleihSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using FES.AusleihSystem.Models;
 
 namespace FES.AusleihSystem
 {
@@ -32,6 +34,13 @@ namespace FES.AusleihSystem
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddAuthentication()
+            ////.AddIdentity()
+            //.AddEntityFrameworkStores()
+            //.AddDefaultTokenProviders();
+
             services.AddMvc();
         }
 
@@ -52,7 +61,7 @@ namespace FES.AusleihSystem
             }
 
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

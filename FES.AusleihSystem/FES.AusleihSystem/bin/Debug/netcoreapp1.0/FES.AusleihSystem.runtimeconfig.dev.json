@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Gregor.Baumgärtner.SINC\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages"
+      "C:\\Users\\baumg\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\baumg\\.nuget\\packages"
     ]
   }
 }
