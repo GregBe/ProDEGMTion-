@@ -112,20 +112,19 @@ namespace FES.AusleihSystem.Controllers
 
 
         }
-        private List<GeraetViewModel> GetGeraet(int ean)
+        private List<GeraetViewModel> GetGeraet(int id)
         {
             var result = new List<GeraetViewModel>();
             IQueryable<GeraetViewModel> temp;
 
 
-            temp = _context.Geraete.Where(g => (g.EAN == ean && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
+            temp = _context.Geraete.Where(g => (g.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
             if (temp.Count() > 0)
             {
                 foreach (var geraet in temp)
                 {
                     result.Add(geraet);
                     geraet.GeraeteStatus = GeraetViewModel.Status.isReserviert;
-                    _context.SaveChanges();
                 }
             }
 

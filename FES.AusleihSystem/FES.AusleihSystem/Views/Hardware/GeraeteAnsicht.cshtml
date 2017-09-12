@@ -6,16 +6,16 @@
     <table>
         <thead>
             <tr>
+                <th>Artikel Nummer</th>
                 <th>Ger&auml;te-Name</th>
-                <th>EAN-Nummer</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var ger in Model)
             {
                 <tr>
+                    <th>@ger.ID</th>
                     <th>@ger.Name</th>
-                    <th>@ger.EAN</th>
                 </tr>
             }
         </tbody>

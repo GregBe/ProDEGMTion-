@@ -44,7 +44,7 @@ namespace FES.AusleihSystem.Controllers
                 List<GeraetViewModel> ger = new List<GeraetViewModel>();
                 using (var ctx = _context)
                 {
-                    var list = ctx.Geraete.Where(g => g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar);
+                    var list = ctx.Geraete;
                     ger = list.ToList();
                 }
 
