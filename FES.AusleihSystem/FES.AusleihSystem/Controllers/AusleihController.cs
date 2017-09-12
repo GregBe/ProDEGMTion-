@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FES.AusleihSystem.Controllers
 {
-    public class AusleihController: Controller
+    public class AusleihController : Controller
     {
         private readonly ApplicationDbContext _context;
         public AusleihController(ApplicationDbContext context)
@@ -23,12 +23,23 @@ namespace FES.AusleihSystem.Controllers
         {
 
             List<ReservierungViewModel> res = new List<ReservierungViewModel>();
+            GeraetViewModel ger = new GeraetViewModel();
+            IQueryable<GeraetViewModel> gerList;
             using (var ctx = _context)
             {
+
                 res = ctx.Reservierungen.ToList();
+                foreach (var reservierung in res)
+                {
+                    gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
+                    reservierung.GeraeteListe = gerList.ToList();
+                }
+
+
             }
             return View(res);
         }
+
         [HttpGet]
         public IActionResult ReservierungAnlegen()
         {
@@ -49,44 +60,75 @@ namespace FES.AusleihSystem.Controllers
 
 
 
-                _context.Reservierungen.Add(VM);
-                _context.SaveChanges();
-    
+            _context.Reservierungen.Add(VM);
+            _context.SaveChanges();
 
-            return View();
+
+            return RedirectToAction("Ubersicht");
         }
+
+        public IActionResult Loeschen(ReservierungViewModel model)
+        {
+            if (model.ReservierungsNummer == 0)
+            {
+                Console.WriteLine("Kein Model gefunden");
+            }
+            else
+            {
+                var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
+                foreach (var gerat in res.GeraeteListe)
+                {
+                    gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
+                    gerat.Reservierung = null;
+                    //_context.Geraete.Update(g => g.ID == gerat.ID);
+                    //_context.Reservierungen.Remove(res);
+
+
+                }
+                _context.Reservierungen.Remove(res);
+                _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Ubersicht");
+        }
+
 
         private NutzerViewModel GetNutzer()
         {
 
-                if(_context.Nutzer.Count() > 0)
+            if (_context.Nutzer.Count() > 0)
+            {
+                return _context.Nutzer.First();
+            }
+            else
+            {
+                return new NutzerViewModel()
                 {
-                    return _context.Nutzer.First();
-                }
-                else
-                {
-                    return new NutzerViewModel()
-                    {
-                        Email ="t@t.de",
-                        Passwort ="..Aa12",
-                        NutzerRolle= new Rolle(),
-                    };
-                }
-                
-            
+                    Email = "t@t.de",
+                    Passwort = "..Aa12",
+                    NutzerRolle = new Rolle(),
+                };
+            }
+
+
         }
         private List<GeraetViewModel> GetGeraet(int ean)
         {
             var result = new List<GeraetViewModel>();
             IQueryable<GeraetViewModel> temp;
-      
-            
-            temp = _context.Geraete.Where(g => g.EAN == ean);
-            
-            foreach (var geraet in temp)
+
+
+            temp = _context.Geraete.Where(g => (g.EAN == ean && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
+            if (temp.Count() > 0)
             {
-                result.Add(geraet);
+                foreach (var geraet in temp)
+                {
+                    result.Add(geraet);
+                    geraet.GeraeteStatus = GeraetViewModel.Status.isReserviert;
+                    _context.SaveChanges();
+                }
             }
+
             return result;
         }
     }

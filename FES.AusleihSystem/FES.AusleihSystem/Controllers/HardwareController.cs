@@ -9,10 +9,10 @@ using FES.AusleihSystem.Data;
 
 namespace FES.AusleihSystem.Controllers
 {
- namespace FES.AusleihSystem.Controllers
-{
-    public class HardwareController : Controller
+    namespace FES.AusleihSystem.Controllers
     {
+        public class HardwareController : Controller
+        {
             private readonly ApplicationDbContext _context;
             public HardwareController(ApplicationDbContext context)
             {
@@ -26,7 +26,6 @@ namespace FES.AusleihSystem.Controllers
             [HttpGet]
             public IActionResult AddGeraet()
             {
-
                 return View();
             }
             [HttpPost]
@@ -37,7 +36,7 @@ namespace FES.AusleihSystem.Controllers
                     ctx.Geraete.Add(geraet);
                     ctx.SaveChanges();
                 }
-                return View();
+                return RedirectToAction("GeraeteAnsicht");
             }
 
             public IActionResult GeraeteAnsicht()
@@ -45,11 +44,12 @@ namespace FES.AusleihSystem.Controllers
                 List<GeraetViewModel> ger = new List<GeraetViewModel>();
                 using (var ctx = _context)
                 {
-                    ger = ctx.Geraete.ToList();
+                    var list = ctx.Geraete.Where(g => g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar);
+                    ger = list.ToList();
                 }
 
                 return View(ger);
             }
         }
-}
+    }
 }

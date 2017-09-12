@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using FES.AusleihSystem.Data;
+using FES.AusleihSystem.ViewModels;
 
 namespace FES.AusleihSystem.Migrations
 {
@@ -35,13 +36,15 @@ namespace FES.AusleihSystem.Migrations
 
                     b.Property<int>("EAN");
 
+                    b.Property<int>("GeraeteStatus");
+
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ReservierungViewModelReservierungsNummer");
+                    b.Property<int?>("ReservierungsNummer");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ReservierungViewModelReservierungsNummer");
+                    b.HasIndex("ReservierungsNummer");
 
                     b.ToTable("Geraete");
                 });
@@ -88,9 +91,9 @@ namespace FES.AusleihSystem.Migrations
 
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.GeraetViewModel", b =>
                 {
-                    b.HasOne("FES.AusleihSystem.ViewModels.ReservierungViewModel")
+                    b.HasOne("FES.AusleihSystem.ViewModels.ReservierungViewModel", "Reservierung")
                         .WithMany("GeraeteListe")
-                        .HasForeignKey("ReservierungViewModelReservierungsNummer");
+                        .HasForeignKey("ReservierungsNummer");
                 });
 
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.NutzerViewModel", b =>

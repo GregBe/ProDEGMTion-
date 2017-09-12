@@ -31,3 +31,14 @@ C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1
 C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfo.cs
 C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.dll
 C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.pdb
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.deps.json
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.runtimeconfig.json
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.runtimeconfig.dev.json
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.dll
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.pdb
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.csprojResolveAssemblyReference.cache
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.csproj.CoreCompileInputs.cache
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfoInputs.cache
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfo.cs
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.dll
+C:\Users\Gregor.Baumgärtner.SINC\Documents\Git\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.pdb
