@@ -1,12 +1,24 @@
 @model List<FES.AusleihSystem.ViewModels.GeraetViewModel>
-                                                       
 
+<h2>Ger&auml;teansicht</h2>
 
-<h2>GeraeteAnsicht</h2>
+<div style="height: 500px; overflow-y: scroll;">
+    <table>
+        <thead>
+            <tr>
+                <th>Ger&auml;te-Name</th>
+                <th>EAN-Nummer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ger in Model)
+            {
+                <tr>
+                    <th>@ger.Name</th>
+                    <th>@ger.EAN</th>
+                </tr>
+            }
+        </tbody>
+       </table>
+</div>
 
-    @foreach (var ger in Model)
-    {
-        <li>@ger.Name, @ger.EAN</li>
-
-
-    }

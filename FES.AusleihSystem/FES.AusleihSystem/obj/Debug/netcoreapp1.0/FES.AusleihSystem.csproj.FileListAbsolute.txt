@@ -20,3 +20,14 @@ C:\Users\Gregor.Baumgärtner.SINC\Desktop\Rebuild\FES.AusleihSystem\FES.AusleihS
 C:\Users\Gregor.Baumgärtner.SINC\Desktop\Rebuild\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfo.cs
 C:\Users\Gregor.Baumgärtner.SINC\Desktop\Rebuild\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.dll
 C:\Users\Gregor.Baumgärtner.SINC\Desktop\Rebuild\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.pdb
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.deps.json
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.runtimeconfig.json
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.runtimeconfig.dev.json
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.dll
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\bin\Debug\netcoreapp1.0\FES.AusleihSystem.pdb
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.csprojResolveAssemblyReference.cache
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.csproj.CoreCompileInputs.cache
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfoInputs.cache
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.AssemblyInfo.cs
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.dll
+C:\GitHub\ProDEGMTion-\FES.AusleihSystem\FES.AusleihSystem\obj\Debug\netcoreapp1.0\FES.AusleihSystem.pdb

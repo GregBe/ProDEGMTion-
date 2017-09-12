@@ -1,18 +1,22 @@
 @model FES.AusleihSystem.ViewModels.GeraetViewModel
-<h2>AddGeraet</h2>
+<h2>Neues Ger&auml;t anlegen</h2>
 
 
-
+<div style="width: 200px">
 <form asp-controller="Hardware" asp-Action="AddGeraet" method="post">
-    <div>
-    <label asp-for="Name"></label>
-    <input asp-for="Name"/>
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control">
     </div>
-    <div>
-    <label asp-for="EAN"></label>
-    <input asp-for="EAN"/>
-        </div>
-    <div>
-    <button type="submit">Hinzuf&uuml;gen</button>
-        </div>
+    <div class="form-group">
+        <label asp-for="EAN">EAN</label>
+        <input asp-for="EAN" class="form-control">
+    </div>
+    <div style="width:100px" class="form-group">
+        <button class="form-control" type="submit">Hinzuf&uuml;gen</button>
+    </div>
 </form>
+</div>
+
+
+
