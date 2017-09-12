@@ -86,7 +86,7 @@ namespace FES.AusleihSystem.Controllers
 
                 }
                 _context.Reservierungen.Remove(res);
-                _context.SaveChangesAsync();
+                 _context.SaveChanges();
             }
 
             return RedirectToAction("Ubersicht");

@@ -9,6 +9,7 @@
             <div>
                 <ul>
                     <li>No.: @reserver.ReservierungsNummer, Von: @reserver.ReservierungsBeginn,Bis.: @reserver.ReservierungsEnde</li>
+                    @Html.ActionLink("Loschen","Loeschen", "Ausleih", reserver)
                     @foreach (var hw in reserver.GeraeteListe)
                     {
                         <div>
