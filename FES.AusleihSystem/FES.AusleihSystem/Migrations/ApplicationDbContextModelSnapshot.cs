@@ -17,18 +17,6 @@ namespace FES.AusleihSystem.Migrations
                 .HasAnnotation("ProductVersion", "1.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("FES.AusleihSystem.Models.Rolle", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Role");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Rolle");
-                });
-
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.GeraetViewModel", b =>
                 {
                     b.Property<int>("ID")
@@ -49,30 +37,10 @@ namespace FES.AusleihSystem.Migrations
                     b.ToTable("Geraete");
                 });
 
-            modelBuilder.Entity("FES.AusleihSystem.ViewModels.NutzerViewModel", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<int?>("NutzerRolleID");
-
-                    b.Property<string>("Passwort");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("NutzerRolleID");
-
-                    b.ToTable("Nutzer");
-                });
-
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.ReservierungViewModel", b =>
                 {
                     b.Property<int>("ReservierungsNummer")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("NutzerID");
 
                     b.Property<DateTime>("ReservierungsBeginn");
 
@@ -83,8 +51,6 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<DateTime>("ReservierungsZeitpunkt");
 
                     b.HasKey("ReservierungsNummer");
-
-                    b.HasIndex("NutzerID");
 
                     b.ToTable("Reservierungen");
                 });
@@ -250,20 +216,6 @@ namespace FES.AusleihSystem.Migrations
                     b.HasOne("FES.AusleihSystem.ViewModels.ReservierungViewModel", "Reservierung")
                         .WithMany("GeraeteListe")
                         .HasForeignKey("ReservierungsNummer");
-                });
-
-            modelBuilder.Entity("FES.AusleihSystem.ViewModels.NutzerViewModel", b =>
-                {
-                    b.HasOne("FES.AusleihSystem.Models.Rolle", "NutzerRolle")
-                        .WithMany()
-                        .HasForeignKey("NutzerRolleID");
-                });
-
-            modelBuilder.Entity("FES.AusleihSystem.ViewModels.ReservierungViewModel", b =>
-                {
-                    b.HasOne("FES.AusleihSystem.ViewModels.NutzerViewModel", "Nutzer")
-                        .WithMany()
-                        .HasForeignKey("NutzerID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

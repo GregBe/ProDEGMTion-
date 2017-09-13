@@ -11,7 +11,7 @@ namespace FES.AusleihSystem.ViewModels
 
         [Key]
         public int ReservierungsNummer { get; set; }
-        public NutzerViewModel Nutzer { get; set; }
+        //public NutzerViewModel Nutzer { get; set; }
         public List<GeraetViewModel> GeraeteListe { get; set; } = new List<GeraetViewModel>();
         [DataType(DataType.DateTime)]
         public DateTime ReservierungsZeitpunkt { get; set; }

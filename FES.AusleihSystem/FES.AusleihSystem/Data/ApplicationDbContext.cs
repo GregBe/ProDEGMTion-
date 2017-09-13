@@ -1,4 +1,5 @@
-﻿using FES.AusleihSystem.ViewModels;
+﻿using FES.AusleihSystem.Models;
+using FES.AusleihSystem.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FES.AusleihSystem.Data
 {
-    public class ApplicationDbContext: IdentityDbContext
+    public class ApplicationDbContext: IdentityDbContext<ApplicationUser>
     {
 
 
@@ -16,7 +17,7 @@ namespace FES.AusleihSystem.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
         {
         }
-        public DbSet<NutzerViewModel> Nutzer { get; set; }
+        //public DbSet<NutzerViewModel> Nutzer { get; set; }
         public DbSet<GeraetViewModel> Geraete{ get; set; }
         public DbSet<ReservierungViewModel> Reservierungen { get; set; }
     }

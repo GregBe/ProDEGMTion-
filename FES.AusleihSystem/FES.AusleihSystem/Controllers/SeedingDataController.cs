@@ -1,6 +1,9 @@
 ﻿using FES.AusleihSystem.Data;
 using FES.AusleihSystem.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +23,22 @@ namespace FES.AusleihSystem.Controllers
             "Maus",
             "Tastatur",
         };
+
+        public static string[] Roles = new string[]
+        {
+            "Admin",
+            "Lehrer",
+            "Schueler"
+
+        };
+
         private ApplicationDbContext _context;
+        private IServiceProvider _service;
         private int SeedSize = 100;
-        public SeedingDataController(ApplicationDbContext context)
+        public SeedingDataController(ApplicationDbContext context, IServiceProvider service)
         {
             _context = context;
+            _service = service;
         }
 
         public IActionResult Seeding()
@@ -32,7 +46,22 @@ namespace FES.AusleihSystem.Controllers
             SeedGeraeteData();
             return RedirectToAction("Index", "Home");
         }
+        public async void SeedRollen()
+        {
+            IServiceScopeFactory scopeFactory = _service.GetRequiredService<IServiceScopeFactory>();
+            using (IServiceScope scope = scopeFactory.CreateScope())
+            {
+                RoleManager<IdentityRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+                foreach(var role in Roles)
+                {
+                    if(await roleManager.FindByNameAsync(role) == null)
+                    {
+                        await roleManager.CreateAsync(new IdentityRole { Name = role });
+                    }
+                }
+            }
+        }
         public void SeedGeraeteData()
         {
             Random ran;
@@ -54,6 +83,13 @@ namespace FES.AusleihSystem.Controllers
                 _context.Geraete.Add(gerat);
             }
             _context.SaveChanges();
+
+            if (_context.UserRoles.Count() < 1)
+            {
+                SeedRollen();
+                Console.WriteLine("Rollen wurden geseedet");
+            }
+                
         }
     }
 }

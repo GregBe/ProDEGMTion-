@@ -1,0 +1,49 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using FES.AusleihSystem.ViewModels;
+@model RegisterViewModel
+
+
+
+
+<div class="row">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Passwort"></label>
+                    <input asp-for="Passwort" class="form-control" />
+                    <span asp-validation-for="Passwort" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfPasswort"></label>
+                    <input asp-for="ConfPasswort" class="form-control" />
+                    <span asp-validation-for="ConfPasswort" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role"></label>
+                    <input asp-for="Role" class="form-control" />
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-default">Register</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

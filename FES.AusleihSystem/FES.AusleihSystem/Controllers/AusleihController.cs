@@ -51,7 +51,7 @@ namespace FES.AusleihSystem.Controllers
         {
             var VM = new ReservierungViewModel()
             {
-                Nutzer = GetNutzer(),
+                //Nutzer = GetNutzer(),
                 GeraeteListe = GetGeraet(model.GeraeteEan),
                 ReservierungsBeginn = model.ReservierungsBeginn,
                 ReservierungsEnde = model.ReservierungsEnde,
@@ -93,25 +93,25 @@ namespace FES.AusleihSystem.Controllers
         }
 
 
-        private NutzerViewModel GetNutzer()
-        {
+        //private NutzerViewModel GetNutzer()
+        //{
 
-            if (_context.Nutzer.Count() > 0)
-            {
-                return _context.Nutzer.First();
-            }
-            else
-            {
-                return new NutzerViewModel()
-                {
-                    Email = "t@t.de",
-                    Passwort = "..Aa12",
-                    NutzerRolle = new Rolle(),
-                };
-            }
+        //    if (_context.Nutzer.Count() > 0)
+        //    {
+        //        return _context.Nutzer.First();
+        //    }
+        //    else
+        //    {
+        //        return new NutzerViewModel()
+        //        {
+        //            Email = "t@t.de",
+        //            Passwort = "..Aa12",
+        //            NutzerRolle = new Rolle(),
+        //        };
+        //    }
 
 
-        }
+        //}
         private List<GeraetViewModel> GetGeraet(int id)
         {
             var result = new List<GeraetViewModel>();

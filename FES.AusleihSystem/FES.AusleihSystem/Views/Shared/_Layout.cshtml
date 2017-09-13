@@ -1,4 +1,13 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿
+
+@using Microsoft.AspNetCore.Identity
+@using FES.AusleihSystem.Models;
+@using FES.AusleihSystem.ViewModels;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +33,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Hardware" asp-action="GeraeteAnsicht">Geräte Anzeigen</a></li>
+                    
+                    @*<li><a asp-area="" asp-controller="Hardware" asp-action="GeraeteAnsicht">Geräte Anzeigen</a></li>
                     <li><a asp-area="" asp-controller="Hardware" asp-action="AddGeraet">Gerät hinzufügen</a></li>
                     <li><a asp-area="" asp-controller="Ausleih" asp-action="Ubersicht">AusleihUbersicht</a></li>
                     <li><a asp-area="" asp-controller="Ausleih" asp-action="ReservierungAnlegen">Reservieren</a></li>
-                    <li><a asp-area="" asp-controller="SeedingData" asp-action="Seeding">Datenbank füllen</a></li>
+                    <li><a asp-area="" asp-controller="SeedingData" asp-action="Seeding">Datenbank füllen</a></li>*@
                 </ul>
+                @await Html.PartialAsync("_LayoutPartial");
             </div>
         </div>
     </nav>
