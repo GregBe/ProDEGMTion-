@@ -1,4 +1,5 @@
 @model List<FES.AusleihSystem.ViewModels.GeraetViewModel>
+@using FES.AusleihSystem.ViewModels
 
 <h2>Ger&auml;teansicht</h2>
 
@@ -17,7 +18,18 @@
                 <tr>
                     <th>@ger.ID</th>
                     <th>@ger.Name</th>
-                    <th>@ger.Reservierung</th>
+                    @if (ger.GeraeteStatus != GeraetViewModel.Status.isVerfugbar)
+                    {
+                        
+                        <th><a>@ger.GeraeteStatus</a></th>
+
+                    }
+                    else
+                    {
+
+                       
+                    }
+                    
                 </tr>
             }
         </tbody>
