@@ -53,6 +53,7 @@ namespace FES.AusleihSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> ReservierungAnlegen(GeraeteReservierungModel model)
         {
             var VM = new ReservierungViewModel()
@@ -72,6 +73,7 @@ namespace FES.AusleihSystem.Controllers
 
             return RedirectToAction("Ubersicht");
         }
+
         [Authorize(Roles = "Admin")]
         public IActionResult Loeschen(ReservierungViewModel model)
         {

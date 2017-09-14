@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FES.AusleihSystem.ViewModels;
 using FES.AusleihSystem.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FES.AusleihSystem.Controllers
 {
@@ -18,17 +19,21 @@ namespace FES.AusleihSystem.Controllers
             {
                 _context = context;
             }
-
+            [Authorize]
             public IActionResult Index()
             {
                 return View();
             }
+
             [HttpGet]
+            [Authorize(Roles ="Admin")]
             public IActionResult AddGeraet()
             {
                 return View();
             }
+
             [HttpPost]
+            [Authorize(Roles = "Admin")]
             public IActionResult AddGeraet(GeraetViewModel geraet)
             {
                 using (var ctx = _context)
@@ -38,7 +43,7 @@ namespace FES.AusleihSystem.Controllers
                 }
                 return RedirectToAction("GeraeteAnsicht");
             }
-
+            [Authorize]
             public IActionResult GeraeteAnsicht()
             {
                 List<GeraetViewModel> ger = new List<GeraetViewModel>();
