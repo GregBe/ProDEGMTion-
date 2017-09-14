@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FES.AusleihSystem.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace FES.AusleihSystem.ViewModels
 
         [Key]
         public int ReservierungsNummer { get; set; }
-        public NutzerViewModel Nutzer { get; set; }
+        public ApplicationUser Nutzer { get; set; }
         public List<GeraetViewModel> GeraeteListe { get; set; } = new List<GeraetViewModel>();
         [DataType(DataType.DateTime)]
         public DateTime ReservierungsZeitpunkt { get; set; }

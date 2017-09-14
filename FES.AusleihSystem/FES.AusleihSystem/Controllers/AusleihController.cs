@@ -1,6 +1,8 @@
 ﻿using FES.AusleihSystem.Data;
 using FES.AusleihSystem.Models;
 using FES.AusleihSystem.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,16 @@ namespace FES.AusleihSystem.Controllers
     public class AusleihController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public AusleihController(ApplicationDbContext context)
+        private UserManager<ApplicationUser> _user;
+        public AusleihController(ApplicationDbContext context, UserManager<ApplicationUser> user)
         {
             _context = context;
+            _user = user;
         }
 
 
         [HttpGet]
+        [Authorize]
         public IActionResult Ubersicht()
         {
 
@@ -41,17 +46,19 @@ namespace FES.AusleihSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult ReservierungAnlegen()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult ReservierungAnlegen(GeraeteReservierungModel model)
+        [Authorize]
+        public async Task<IActionResult> ReservierungAnlegen(GeraeteReservierungModel model)
         {
             var VM = new ReservierungViewModel()
             {
-                Nutzer = GetNutzer(),
+                Nutzer = await _user.GetUserAsync(User),
                 GeraeteListe = GetGeraet(model.GeraeteEan),
                 ReservierungsBeginn = model.ReservierungsBeginn,
                 ReservierungsEnde = model.ReservierungsEnde,
@@ -67,6 +74,7 @@ namespace FES.AusleihSystem.Controllers
             return RedirectToAction("Ubersicht");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Loeschen(ReservierungViewModel model)
         {
             if (model.ReservierungsNummer == 0)
@@ -93,25 +101,8 @@ namespace FES.AusleihSystem.Controllers
         }
 
 
-        private NutzerViewModel GetNutzer()
-        {
-
-            if (_context.Nutzer.Count() > 0)
-            {
-                return _context.Nutzer.First();
-            }
-            else
-            {
-                return new NutzerViewModel()
-                {
-                    Email = "t@t.de",
-                    Passwort = "..Aa12",
-                    NutzerRolle = new Rolle(),
-                };
-            }
 
 
-        }
         private List<GeraetViewModel> GetGeraet(int id)
         {
             var result = new List<GeraetViewModel>();

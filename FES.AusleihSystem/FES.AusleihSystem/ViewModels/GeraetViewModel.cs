@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace FES.AusleihSystem.ViewModels
         public string Name { get; set; }
         public int EAN { get; set; }
         public Status GeraeteStatus { get; set; } = Status.isVerfugbar;
-
+        
         public virtual ReservierungViewModel Reservierung { get; set; }
     }
 }

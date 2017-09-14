@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FES.AusleihSystem.ViewModel
+namespace FES.AusleihSystem.ViewModels
 {
     public class LoginViewModel
     {
@@ -16,6 +16,6 @@ namespace FES.AusleihSystem.ViewModel
         [DataType(DataType.Password)]
         public string Passwort { get; set; }
 
-        public bool ErneutEinLoggen { get; set; }
+        //public bool ErneutEinLoggen { get; set; }
     }
 }

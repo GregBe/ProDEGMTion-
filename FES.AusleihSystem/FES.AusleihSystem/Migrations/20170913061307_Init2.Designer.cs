@@ -9,8 +9,8 @@ using FES.AusleihSystem.ViewModels;
 namespace FES.AusleihSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170912183410_Identity")]
-    partial class Identity
+    [Migration("20170913061307_Init2")]
+    partial class Init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
