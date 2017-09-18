@@ -13,6 +13,10 @@ namespace FES.AusleihSystem.Controllers
 {
     public class SeedingDataController: Controller
     {
+        /// <summary>
+        /// Fügt Geräte und Rollen hinzu
+        /// Testdaten
+        /// </summary>
         private string[] GeraeteNamen = new string[]
         {
             "Beamer",

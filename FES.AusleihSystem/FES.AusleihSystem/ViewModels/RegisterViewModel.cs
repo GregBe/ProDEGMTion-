@@ -8,6 +8,10 @@ namespace FES.AusleihSystem.ViewModels
 {
     public class RegisterViewModel
     {
+        /// <summary>
+        /// Eigenschafte welche beim Registrieren eines Nutzers eingegeben werden,
+        /// Das "ConfPasswort" überprüft zur Eingabe, ob die Passwörter übereinstimmen.
+        /// </summary>
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

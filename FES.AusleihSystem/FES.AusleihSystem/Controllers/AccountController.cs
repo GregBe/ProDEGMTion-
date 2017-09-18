@@ -13,10 +13,21 @@ namespace FES.AusleihSystem.Controllers
 {
     public class AccountController: Controller
     {
+        /// <summary>
+        /// Der Controller welcher den User händelt:
+        /// Register
+        /// Login
+        /// Logout
+        /// </summary>
         private UserManager<ApplicationUser> _nutzer;
         private SignInManager<ApplicationUser> _signInManager;
         private ILogger _logger;
-        
+       
+        /// <summary>
+        /// Der Konstruktor wird zur Laufzeit aufgerufen, sobald der User auf .../Account/... gelangt 
+        /// </summary>
+        /// <param name="nutzer">Übergibt den momentanen User und dessen Cookies</param>
+        /// <param name="signInManager">Handelt alles rund ums Ein/Ausloggen</param>
         public AccountController(UserManager<ApplicationUser> nutzer, SignInManager<ApplicationUser> signInManager)
         {
             _nutzer = nutzer;
@@ -29,6 +40,13 @@ namespace FES.AusleihSystem.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Prüft ob der das RegisterViewModel Valide ist und versucht dann den Nutzer anzulegen und gleichzeitig
+        /// einzuloggen.
+        /// .../Account/Register
+        /// </summary>
+        /// <param name="model">Bekommt von der View ein Objekt von RegisterViewModel</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -58,6 +76,12 @@ namespace FES.AusleihSystem.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Versucht den User anhand seiner Eingaben anzumelden.
+        /// .../Account/Login
+        /// </summary>
+        /// <param name="model">Wird mit deinem Obejkt von LoginViewModel befüllt</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -78,7 +102,11 @@ namespace FES.AusleihSystem.Controllers
             }
             return View();
         }
-
+        /// <summary>
+        /// Meldet den aktuellen Nutzer ab.
+        /// .../Account/Logout
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

@@ -10,6 +10,11 @@ namespace FES.AusleihSystem.ViewModels
 {
     public class ReservierungViewModel
     {
+        /// <summary>
+        ///Beschreibt welche Eigenschaften bei einer Reservierung erfasst werden und an den Controller
+        ///weitergeleitet werden.
+        /// </summary>
+        /// 
 
         [Key]
         public int ReservierungsNummer { get; set; }

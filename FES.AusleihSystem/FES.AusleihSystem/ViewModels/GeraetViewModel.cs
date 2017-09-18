@@ -8,6 +8,10 @@ namespace FES.AusleihSystem.ViewModels
 {
     public class GeraetViewModel
     {
+        /// <summary>
+        /// Hier werden die Eigenschaften für ein Gerät festgelegt und somit
+        /// auch die DBTabelle festgelegt.
+        /// </summary>
         public enum Status
         {
             isVerfugbar,

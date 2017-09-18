@@ -13,18 +13,30 @@ namespace FES.AusleihSystem.Controllers
 {
     public class AusleihController : Controller
     {
+        /// <summary>
+        /// Dieser Controller welcher die Ausleih und Reserverierungen händelt
+        /// </summary>
         private readonly ApplicationDbContext _context;
         private UserManager<ApplicationUser> _user;
+
+        /// <summary>
+        /// Der Konstruktor wird zur Laufzeit aufgerufen, sobald der User auf .../Ausleih/... gelangt 
+        /// </summary>
+        /// <param name="context">Bekommt vom Service den aktuellen DbContext</param>
+        /// <param name="user">Bekommt vom Service den aktuellen User</param>
         public AusleihController(ApplicationDbContext context, UserManager<ApplicationUser> user)
         {
             _context = context;
             _user = user;
         }
 
-
+        /// <summary>
+        /// Zeigt einfach nur eine View mit allen Reservierungen an
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public IActionResult Ubersicht()
+        public IActionResult Ubersicht(string errormsg = null)
         {
 
             List<ReservierungViewModel> res = new List<ReservierungViewModel>();
@@ -52,51 +64,71 @@ namespace FES.AusleihSystem.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Prüft ob das eingegebene Model Valide ist und legt anschließend eine Reservierung an
+        /// </summary>
+        /// <param name="model">Nutzer Eingeben bei /Ausleih/ReservierungAnlegen</param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> ReservierungAnlegen(GeraeteReservierungModel model)
         {
-            var VM = new ReservierungViewModel()
+            if (ModelState.IsValid)
             {
-                Nutzer = await _user.GetUserAsync(User),
-                GeraeteListe = GetGeraet(model.GeraeteEan),
-                ReservierungsBeginn = model.ReservierungsBeginn,
-                ReservierungsEnde = model.ReservierungsEnde,
-                ReservierungsZeitpunkt = DateTime.Now
-            };
+
+
+                var VM = new ReservierungViewModel()
+                {
+                    Nutzer = await _user.GetUserAsync(User),
+                    GeraeteListe = GetGeraet(model.GeraeteEan),
+                    ReservierungsBeginn = model.ReservierungsBeginn,
+                    ReservierungsEnde = model.ReservierungsEnde,
+                    ReservierungsZeitpunkt = DateTime.Now
+                };
 
 
 
-            _context.Reservierungen.Add(VM);
-            _context.SaveChanges();
+                _context.Reservierungen.Add(VM);
+                _context.SaveChanges();
 
 
-            return RedirectToAction("Ubersicht");
+                return RedirectToAction("Ubersicht");
+            }
+            return View();
         }
 
+        /// <summary>
+        /// Nur Admins dürfen Löschen
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         public IActionResult Loeschen(ReservierungViewModel model)
         {
-            if (model.ReservierungsNummer == 0)
+            if (ModelState.IsValid)
             {
-                Console.WriteLine("Kein Model gefunden");
-            }
-            else
-            {
-                var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
-                foreach (var gerat in res.GeraeteListe)
+                if (model.ReservierungsNummer == 0)
                 {
-                    gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
-                    gerat.Reservierung = null;
-                    //_context.Geraete.Update(g => g.ID == gerat.ID);
-                    //_context.Reservierungen.Remove(res);
-
-
+                    Console.WriteLine("Kein Model gefunden");
                 }
-                _context.Reservierungen.Remove(res);
-                 _context.SaveChanges();
-            }
+                else
+                {
+                    var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
+                    foreach (var gerat in res.GeraeteListe)
+                    {
+                        gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
+                        gerat.Reservierung = null;
+                        //_context.Geraete.Update(g => g.ID == gerat.ID);
+                        //_context.Reservierungen.Remove(res);
 
+
+                    }
+                    _context.Reservierungen.Remove(res);
+                    _context.SaveChanges();
+                }
+
+                return RedirectToAction("Ubersicht");
+            }
             return RedirectToAction("Ubersicht");
         }
 

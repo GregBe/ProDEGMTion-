@@ -14,11 +14,21 @@ namespace FES.AusleihSystem.Controllers
     {
         public class HardwareController : Controller
         {
+            /// <summary>
+            /// Dieser Controller handhabt die Geräte Verwaltung
+            /// </summary>
+
             private readonly ApplicationDbContext _context;
+
+            /// <summary>
+            /// Der Konstruktor wird zur Laufzeit aufgerufen, sobald der User auf .../Hardware/... gelangt 
+            /// </summary>
+            /// <param name="context">DBContext</param>
             public HardwareController(ApplicationDbContext context)
             {
                 _context = context;
             }
+
             [Authorize]
             public IActionResult Index()
             {
@@ -31,7 +41,10 @@ namespace FES.AusleihSystem.Controllers
             {
                 return View();
             }
-
+            /// <summary>
+            /// Fügt Geräte hinzu .../Hardware/AddGeraet
+            /// </summary>
+            /// <returns></returns>
             [HttpPost]
             [Authorize(Roles = "Admin")]
             public IActionResult AddGeraet(GeraetViewModel geraet)
@@ -43,6 +56,12 @@ namespace FES.AusleihSystem.Controllers
                 }
                 return RedirectToAction("GeraeteAnsicht");
             }
+
+            /// <summary>
+            /// .../Hardware/GeraeteAnsicht
+            /// Zeigt alle Geraete an
+            /// </summary>
+            /// <returns></returns>
             [Authorize]
             public IActionResult GeraeteAnsicht()
             {

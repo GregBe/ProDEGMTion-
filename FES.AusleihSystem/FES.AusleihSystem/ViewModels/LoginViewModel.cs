@@ -8,6 +8,9 @@ namespace FES.AusleihSystem.ViewModels
 {
     public class LoginViewModel
     {
+        /// <summary>
+        /// Eigenschafte welche beim Login vom Nutzer eingegeben werden
+        /// </summary>
         [Required]
         [EmailAddress]
         public string Email { get; set; }
