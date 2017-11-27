@@ -1,4 +1,5 @@
 ﻿using FES.AusleihSystem.Data;
+using FES.AusleihSystem.Models;
 using FES.AusleihSystem.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FES.AusleihSystem.Controllers
 {
-    public class SeedingDataController: Controller
+    public class SeedingDataController : Controller
     {
         /// <summary>
         /// Fügt Geräte und Rollen hinzu
@@ -33,6 +34,13 @@ namespace FES.AusleihSystem.Controllers
             "Admin",
             "Lehrer",
             "Schueler"
+
+        };
+        public static string[] Kategorien = new string[]
+        {
+            "Beamer",
+            "Laptop",
+            "Drucker"
 
         };
 
@@ -57,14 +65,29 @@ namespace FES.AusleihSystem.Controllers
             {
                 RoleManager<IdentityRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                foreach(var role in Roles)
+                foreach (var role in Roles)
                 {
-                    if(await roleManager.FindByNameAsync(role) == null)
+                    if (await roleManager.FindByNameAsync(role) == null)
                     {
                         await roleManager.CreateAsync(new IdentityRole { Name = role });
                     }
                 }
             }
+        }
+        public void KategorieSeeding()
+        {
+            for (int i = 0; i < Kategorien.Length; i++)
+            {
+                var Kategorie = new GeraeteKategorie
+                {
+                    Name = Kategorien[i]
+                };
+                Console.Write(Kategorien[i] + "wurde hinzugefügt, ");
+                _context.Kategorien.Add(Kategorie);
+            }
+            _context.SaveChanges();
+            Console.WriteLine("Kategorien wurden geseedet");
+
         }
         public void SeedGeraeteData()
         {
@@ -73,9 +96,9 @@ namespace FES.AusleihSystem.Controllers
             int ean;
             ran = new Random();
             //Geräte Seeding
-            for (int i=0; i< SeedSize; i++)
+            for (int i = 0; i < SeedSize; i++)
             {
-                
+
                 name = ran.Next(0, 6);
                 ean = ran.Next(10000000, 99999999);
                 var gerat = new GeraetViewModel()
@@ -93,7 +116,11 @@ namespace FES.AusleihSystem.Controllers
                 SeedRollen();
                 Console.WriteLine("Rollen wurden geseedet");
             }
-                
+            if (_context.Kategorien.Count() < 1)
+            {
+                KategorieSeeding();
+            }
+
         }
     }
 }

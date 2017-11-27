@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FES.AusleihSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,5 +28,6 @@ namespace FES.AusleihSystem.ViewModels
         public Status GeraeteStatus { get; set; } = Status.isVerfugbar;
         
         public virtual ReservierungViewModel Reservierung { get; set; }
+        public GeraeteKategorie Kategorie { get; set; }
     }
 }

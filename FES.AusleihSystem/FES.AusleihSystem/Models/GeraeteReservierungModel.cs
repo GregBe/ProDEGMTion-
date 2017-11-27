@@ -11,8 +11,8 @@ namespace FES.AusleihSystem.Models
     {
 
         public int NutzerID { get; set; }
-
         public int GeraeteEan { get; set; }
+        public GeraeteKategorie Kategorie { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]

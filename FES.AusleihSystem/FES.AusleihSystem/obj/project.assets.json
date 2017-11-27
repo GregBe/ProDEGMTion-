@@ -10930,7 +10930,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\": {}
+    "C:\\Users\\baumg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -10938,14 +10938,14 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
+      "projectUniqueName": "C:\\Users\\baumg\\Desktop\\GitHub\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
       "projectName": "FES.AusleihSystem",
-      "projectPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
-      "packagesPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\obj\\",
+      "projectPath": "C:\\Users\\baumg\\Desktop\\GitHub\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
+      "packagesPath": "C:\\Users\\baumg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\baumg\\Desktop\\GitHub\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gregor.Baumgärtner.SINC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\baumg\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10953,7 +10953,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
+        "C:\\Users\\baumg\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

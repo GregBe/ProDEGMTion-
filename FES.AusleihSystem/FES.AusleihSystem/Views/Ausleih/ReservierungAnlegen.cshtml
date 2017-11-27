@@ -1,10 +1,19 @@
 ﻿@model FES.AusleihSystem.Models.GeraeteReservierungModel
 
+
 <h2>Reservierungen</h2>
 
 <div style="width: 150px">
     <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
         <div>
+            <div>
+                <select asp-for="Kategorie.Name" class="form-control">
+                    @foreach (var kat  in (List<GeraeteKategorie>)ViewBag.kategorien)
+                    {
+                        <option>@kat.Name</option>
+                    }
+                </select>
+            </div>
             <table border="0">
                 <tr style="height: 50px">
                     <td>

@@ -61,6 +61,9 @@ namespace FES.AusleihSystem.Controllers
         [Authorize]
         public IActionResult ReservierungAnlegen()
         {
+            List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
+            kat = _context.Kategorien.ToList();
+            ViewBag.kategorien = kat;
             return View();
         }
 
@@ -80,7 +83,8 @@ namespace FES.AusleihSystem.Controllers
                 var VM = new ReservierungViewModel()
                 {
                     Nutzer = await _user.GetUserAsync(User),
-                    GeraeteListe = GetGeraet(model.GeraeteEan),
+                    //GeraeteListe = GetGeraet(model.GeraeteEan),
+                    GeraeteListe = new List<GeraetViewModel>() { GetGeraetByKategorie(model.Kategorie) },
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
                     ReservierungsZeitpunkt = DateTime.Now
@@ -134,7 +138,10 @@ namespace FES.AusleihSystem.Controllers
 
 
 
-
+        private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)
+        {
+            return _context.Geraete.Where(g => (g.Kategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar)).FirstOrDefault();
+        }
         private List<GeraetViewModel> GetGeraet(int id)
         {
             var result = new List<GeraetViewModel>();

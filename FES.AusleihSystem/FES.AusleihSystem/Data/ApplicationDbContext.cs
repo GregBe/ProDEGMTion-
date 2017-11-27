@@ -20,6 +20,7 @@ namespace FES.AusleihSystem.Data
         //public DbSet<NutzerViewModel> Nutzer { get; set; }
         public DbSet<GeraetViewModel> Geraete{ get; set; }
         public DbSet<ReservierungViewModel> Reservierungen { get; set; }
+        public DbSet<GeraeteKategorie> Kategorien { get; set; }
     }
 }
 //namespace FES.AusleihSystem.Controllers

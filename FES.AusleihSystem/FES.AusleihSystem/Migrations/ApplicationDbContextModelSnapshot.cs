@@ -66,6 +66,18 @@ namespace FES.AusleihSystem.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("FES.AusleihSystem.Models.GeraeteKategorie", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Kategorien");
+                });
+
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.GeraetViewModel", b =>
                 {
                     b.Property<int>("ID")
@@ -75,11 +87,15 @@ namespace FES.AusleihSystem.Migrations
 
                     b.Property<int>("GeraeteStatus");
 
+                    b.Property<int?>("KategorieID");
+
                     b.Property<string>("Name");
 
                     b.Property<int?>("ReservierungsNummer");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("KategorieID");
 
                     b.HasIndex("ReservierungsNummer");
 
@@ -217,6 +233,10 @@ namespace FES.AusleihSystem.Migrations
 
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.GeraetViewModel", b =>
                 {
+                    b.HasOne("FES.AusleihSystem.Models.GeraeteKategorie", "Kategorie")
+                        .WithMany()
+                        .HasForeignKey("KategorieID");
+
                     b.HasOne("FES.AusleihSystem.ViewModels.ReservierungViewModel", "Reservierung")
                         .WithMany("GeraeteListe")
                         .HasForeignKey("ReservierungsNummer");
