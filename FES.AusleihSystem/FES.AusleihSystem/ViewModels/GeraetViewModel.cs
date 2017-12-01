@@ -28,6 +28,7 @@ namespace FES.AusleihSystem.ViewModels
         public Status GeraeteStatus { get; set; } = Status.isVerfugbar;
         
         public virtual ReservierungViewModel Reservierung { get; set; }
-        public GeraeteKategorie Kategorie { get; set; }
+        public string Kategorie { get; set; }
+        public GeraeteKategorie GeKategorie { get; set; }
     }
 }

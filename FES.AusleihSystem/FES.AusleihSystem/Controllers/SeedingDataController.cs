@@ -98,13 +98,13 @@ namespace FES.AusleihSystem.Controllers
             //Geräte Seeding
             for (int i = 0; i < SeedSize; i++)
             {
-
                 name = ran.Next(0, 6);
                 ean = ran.Next(10000000, 99999999);
                 var gerat = new GeraetViewModel()
                 {
                     Name = GeraeteNamen[name],
                     GeraeteStatus = GeraetViewModel.Status.isVerfugbar,
+                   // Kategorie = _context.Kategorien.Where((o) => o.ID == name % 3).FirstOrDefault(),
                     EAN = ean,
                 };
                 _context.Geraete.Add(gerat);

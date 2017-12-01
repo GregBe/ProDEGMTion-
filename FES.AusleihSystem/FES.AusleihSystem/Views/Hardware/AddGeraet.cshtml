@@ -14,7 +14,16 @@
     </div>
     <div>
         <label asp-for="Kategorie"></label>
-        <select asp-for="Kategorie" asp-items="@(new SelectList(ViewBag.KategorieListe,"ID","Name"))"></select>
+
+
+            <select name="Kategorie" asp-for="Kategorie">
+                @foreach (var kat in (List<GeraeteKategorie>)ViewBag.kategorien)
+                {
+                    <option>@kat.Name</option>
+                }
+            </select>
+        
+      
     </div>
     <div style="width:100px" class="form-group">
         <button class="form-control" type="submit">Hinzuf&uuml;gen</button>

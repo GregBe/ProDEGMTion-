@@ -1,4 +1,7 @@
-﻿@model FES.AusleihSystem.Models.GeraeteReservierungModel
+﻿
+@using FES.AusleihSystem.Models
+
+@model FES.AusleihSystem.Models.GeraeteReservierungModel
 
 
 <h2>Reservierungen</h2>
@@ -7,8 +10,8 @@
     <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
         <div>
             <div>
-                <select asp-for="Kategorie.Name" class="form-control">
-                    @foreach (var kat  in (List<GeraeteKategorie>)ViewBag.kategorien)
+                <select name="Kategorie" asp-for="Kategorie" class="form-control">
+                    @foreach (var kat in (List<GeraeteKategorie>)ViewBag.kategorien)
                     {
                         <option>@kat.Name</option>
                     }

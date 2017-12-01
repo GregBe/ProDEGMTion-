@@ -140,7 +140,7 @@ namespace FES.AusleihSystem.Controllers
 
         private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)
         {
-            return _context.Geraete.Where(g => (g.Kategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar)).FirstOrDefault();
+            return _context.Geraete.Where(g => (g.GeKategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar)).FirstOrDefault();
         }
         private List<GeraetViewModel> GetGeraet(int id)
         {
