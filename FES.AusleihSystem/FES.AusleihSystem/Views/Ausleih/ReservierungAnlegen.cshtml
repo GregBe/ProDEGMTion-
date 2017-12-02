@@ -4,56 +4,54 @@
 @model FES.AusleihSystem.Models.GeraeteReservierungModel
 
 
-<h2>Reservierungen</h2>
+        <h2>Reservierungen</h2>
 
-<div style="width: 150px">
-    <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
-        <div>
-            <div>
-                <select name="Kategorie" asp-for="Kategorie" class="form-control">
-                    @foreach (var kat in (List<GeraeteKategorie>)ViewBag.kategorien)
-                    {
-                        <option>@kat.Name</option>
-                    }
-                </select>
-            </div>
-            <table border="0">
-                <tr style="height: 50px">
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="GeraeteEan"></label>
-                            <input asp-for="GeraeteEan" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td>
-                        <div style="width: 150px" class="form-group">
-                            <label asp-for="ReservierungsBeginn"></label>
-                            <input asp-for="ReservierungsBeginn" class="form-control" />
-                            <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div style="width: 150px" class="form-group">
-                            <label asp-for="ReservierungsEnde"></label>
-                            <input asp-for="ReservierungsEnde" class="form-control" />
-                            <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="height: 400px" class="form-group">
-                            <button style="width: 100px" class="form-control" type="submit">Reservieren</button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <div style="width: 150px">
+            <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
+                <div>
+                    <div>
+                        <select id="KategorieSelect" name="Kategorie" asp-for="Kategorie" 
+                                asp-items='new SelectList(Model.KategorieList,"ID","Name")' form="form-control" onchange="AjaxCall(this);">
+                            </select>
+                    </div>
+                    <table border="0">
+                        <tr style="height: 50px">
+                            <td>
+                                <div class="form-group">
+                                    <label asp-for="GeraeteEan"></label>
+                                    <input asp-for="GeraeteEan" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="width: 150px" class="form-group">
+                                    <label asp-for="ReservierungsBeginn"></label>
+                                    <input asp-for="ReservierungsBeginn" class="form-control" />
+                                    <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 150px" class="form-group">
+                                    <label asp-for="ReservierungsEnde"></label>
+                                    <input asp-for="ReservierungsEnde" class="form-control" />
+                                    <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="height: 400px" class="form-group">
+                                    <button style="width: 100px" class="form-control" type="submit">Reservieren</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
 
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+        @section Scripts {
+            @await Html.PartialAsync("_ValidationScriptsPartial")
+
+        }

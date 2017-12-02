@@ -16,7 +16,7 @@
         <label asp-for="Kategorie"></label>
 
 
-            <select name="Kategorie" asp-for="Kategorie">
+            <select name="Kategorie" class="form-control" asp-for="Kategorie">
                 @foreach (var kat in (List<GeraeteKategorie>)ViewBag.kategorien)
                 {
                     <option>@kat.Name</option>

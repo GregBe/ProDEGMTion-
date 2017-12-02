@@ -61,10 +61,15 @@ namespace FES.AusleihSystem.Controllers
         [Authorize]
         public IActionResult ReservierungAnlegen()
         {
-            List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
-            kat = _context.Kategorien.ToList();
-            ViewBag.kategorien = kat;
-            return View();
+            //List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
+            //kat = _context.Kategorien.ToList();
+            //ViewBag.kategorien = kat;
+
+            GeraeteReservierungModel model = new GeraeteReservierungModel();
+            model.KategorieList= _context.Kategorien.ToList();
+            model.ReservierungsBeginn = DateTime.Now;
+            model.ReservierungsEnde = DateTime.Now;
+            return View(model);
         }
 
         /// <summary>
@@ -159,6 +164,11 @@ namespace FES.AusleihSystem.Controllers
             }
 
             return result;
+        }
+
+        public List<GeraetViewModel> GetGeraete()
+        {
+            return _context.Geraete.ToList();
         }
     }
 }
