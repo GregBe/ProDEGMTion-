@@ -26,7 +26,7 @@ namespace FES.AusleihSystem.ViewModels
         public string Name { get; set; }
         public int EAN { get; set; }
         public Status GeraeteStatus { get; set; } = Status.isVerfugbar;
-        
+        //public string[] Kommentar { get; set; }
         public virtual ReservierungViewModel Reservierung { get; set; }
         public string Kategorie { get; set; }
         public GeraeteKategorie GeKategorie { get; set; }

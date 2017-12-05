@@ -73,7 +73,7 @@ namespace FES.AusleihSystem.Controllers
                 List<GeraetViewModel> ger = new List<GeraetViewModel>();
                 using (var ctx = _context)
                 {
-                    var list = ctx.Geraete;
+                    var list = ctx.Geraete.Where((o)=>o.Kategorie !=null);
                     ger = list.ToList();
                 }
 
