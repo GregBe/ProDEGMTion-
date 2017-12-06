@@ -24,12 +24,12 @@ namespace FES.AusleihSystem.ViewModels
         [DataType(DataType.DateTime)]
         public DateTime ReservierungsZeitpunkt { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ReservierungsEnde { get; set; }
 
         public TimeSpan ReservierungsDauer { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.Time)]
         public DateTime ReservierungsBeginn { get; set; }
 
     }

@@ -123,15 +123,19 @@ namespace FES.AusleihSystem.Controllers
                 else
                 {
                     var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
-                    foreach (var gerat in res.GeraeteListe)
+                    var geraete = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == res.ReservierungsNummer);
+                    foreach (var gerat in geraete)
                     {
+                        //_context.Geraete.Remove(gerat);
                         gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
                         gerat.Reservierung = null;
                         //_context.Geraete.Update(g => g.ID == gerat.ID);
                         //_context.Reservierungen.Remove(res);
-
+                        // _context.Geraete.Add(gerat);
+                        _context.Geraete.Update(gerat);
 
                     }
+
                     _context.Reservierungen.Remove(res);
                     _context.SaveChanges();
                 }
