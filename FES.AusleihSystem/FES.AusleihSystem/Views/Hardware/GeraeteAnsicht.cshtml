@@ -9,6 +9,7 @@
             <tr>
                 <th>Artikel Nummer</th>
                 <th>Ger&auml;te-Name</th>
+                <th>Kategorie</th>
                 <th>Reservierungsstatus</th>
             </tr>
         </thead>
@@ -18,21 +19,13 @@
                 <tr>
                     <th>@ger.ID</th>
                     <th>@ger.Name</th>
-                    @if (ger.GeraeteStatus != GeraetViewModel.Status.isVerfugbar)
-                    {
-                        
-                        <th><a>@ger.GeraeteStatus</a></th>
+                    <th>@ger.Kategorie</th>
 
-                    }
-                    else
-                    {
+                    <th>@StringEnum.GetStringValue(ger.GeraeteStatus)</th>
 
-                       
-                    }
-                    
                 </tr>
             }
         </tbody>
-       </table>
+    </table>
 </div>
 
