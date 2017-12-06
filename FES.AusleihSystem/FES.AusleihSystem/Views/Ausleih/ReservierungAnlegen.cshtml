@@ -25,19 +25,28 @@
                 </tr>
                 <tr style="height: 50px">
                     <td>
-                        <div style="width: 150px" class="form-group">
+                        <div style="width: 150px; margin-right: 25px" class="form-group">
                             <label asp-for="ReservierungsBeginn"></label>
                             <input asp-for="ReservierungsBeginn" class="form-control" />
                             <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
                         </div>
                     </td>
                     <td>
-                        <div style="width: 150px" class="form-group">
+                        <div style="width: 150px; margin-right: 25px" class="form-group">
                             <label asp-for="ReservierungsEnde"></label>
                             <input asp-for="ReservierungsEnde" class="form-control" />
                             <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
                         </div>
                     </td>
+
+                    @*<td>
+                        <div style="width: 150px; margin-right: 25px" class="form-group">
+                            <label asp-for="ReservierungsDauer"></label>
+                            <input asp-for="ReservierungsDauer" class="form-control" />
+                            <span asp-validation-for="ReservierungsDauer" class="text-danger"></span>
+                        </div>
+                    </td>*@
+
                 </tr>
                 <tr>
                     <td>
