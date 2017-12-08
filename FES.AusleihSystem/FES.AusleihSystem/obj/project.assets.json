@@ -6079,8 +6079,8 @@
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
-        "runtime.native.System.Security.Cryptography.nuspec",
-        "runtime.native.system.security.cryptography.4.0.1.nupkg.sha512"
+        "runtime.native.system.security.cryptography.4.0.1.nupkg.sha512",
+        "runtime.native.system.security.cryptography.nuspec"
       ]
     },
     "runtime.native.System.Security.Cryptography.Apple/4.3.0": {
@@ -8488,8 +8488,8 @@
         "ref/netstandard1.3/ja/System.Net.Security.xml",
         "ref/netstandard1.3/ko/System.Net.Security.xml",
         "ref/netstandard1.3/ru/System.Net.Security.xml",
-        "ref/netstandard1.3/zh-Hans/System.Net.Security.xml",
-        "ref/netstandard1.3/zh-Hant/System.Net.Security.xml",
+        "ref/netstandard1.3/zh-hans/System.Net.Security.xml",
+        "ref/netstandard1.3/zh-hant/System.Net.Security.xml",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
@@ -10930,11 +10930,7 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\Moritz.Groß\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\": {}
->>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
   },
   "project": {
     "version": "1.0.0",
@@ -10942,7 +10938,6 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Moritz.Groß\\Source\\Repos\\ProDEGMTion-\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
       "projectName": "FES.AusleihSystem",
       "projectPath": "C:\\Users\\Moritz.Groß\\Source\\Repos\\ProDEGMTion-\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
@@ -10951,16 +10946,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Moritz.Groß\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
-      "projectName": "FES.AusleihSystem",
-      "projectPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
-      "packagesPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\Gregor.Baumgärtner.SINC\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10969,10 +10954,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
-<<<<<<< HEAD
         "\\\\sinc-intern.de\\ablage\\software\\NuGetFeeds\\SINCShared": {},
-=======
->>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11048,5 +11030,13 @@
         ]
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\Moritz.Groß\\Source\\Repos\\ProDEGMTion-\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\obj\\FES.AusleihSystem.csproj.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

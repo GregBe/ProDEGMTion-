@@ -86,11 +86,6 @@ namespace FES.AusleihSystem.Controllers
 
                     Nutzer = await _user.GetUserAsync(User),
                     GeraeteListe = GetGeraet(model.GeraeteEan),
-<<<<<<< HEAD
-                    //GeraeteListe = new List<GeraetViewModel>() { GetGeraetByKategorie(model.Kategorie) },
-=======
-                    //GeraeteListe = new List<GeraetViewModel>() { _context.Geraete.Where((o) => o.EAN == model.GeraeteEan).FirstOrDefault() },
->>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
                     //ReservierungsDauer = model.ReservierungsDauer,
