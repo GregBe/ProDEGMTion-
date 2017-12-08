@@ -10,10 +10,6 @@ using System.Threading.Tasks;
 
 namespace FES.SchulHardwareAusleihSystem.Config
 {
-
-
-
-
     public class NutzerRollenSeeding
     {
 

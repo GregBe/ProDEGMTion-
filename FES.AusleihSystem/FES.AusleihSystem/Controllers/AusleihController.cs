@@ -44,15 +44,12 @@ namespace FES.AusleihSystem.Controllers
             IQueryable<GeraetViewModel> gerList;
             using (var ctx = _context)
             {
-
                 res = ctx.Reservierungen.ToList();
                 foreach (var reservierung in res)
                 {
                     gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
                     reservierung.GeraeteListe = gerList.ToList();
                 }
-
-
             }
             return View(res);
         }
@@ -83,15 +80,15 @@ namespace FES.AusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
+                
                 var VM = new ReservierungViewModel()
                 {
+
                     Nutzer = await _user.GetUserAsync(User),
                     GeraeteListe = GetGeraet(model.GeraeteEan),
-                    //GeraeteListe = new List<GeraetViewModel>() { _context.Geraete.Where((o) => o.EAN == model.GeraeteEan).FirstOrDefault() },
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
+                    //ReservierungsDauer = model.ReservierungsDauer,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
 

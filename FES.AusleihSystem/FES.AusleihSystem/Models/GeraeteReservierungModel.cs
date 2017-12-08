@@ -22,6 +22,11 @@ namespace FES.AusleihSystem.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ReservierungsEnde { get; set; }
 
+        //[DataType(DataType.Time)]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
+        //public DateTime ReservierungsDauer { get; set; }
+
+
         [DataType(DataType.Date)]
         public DateTime ReservierungsBeginn { get; set; }
     }
