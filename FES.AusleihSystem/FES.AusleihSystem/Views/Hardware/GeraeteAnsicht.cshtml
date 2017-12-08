@@ -3,26 +3,24 @@
 
 <h2>Ger&auml;teansicht</h2>
 
-<div class="form-control" style="height: 500px; overflow-y: scroll;">
-    <table border="0">
+<div class="form-control" style="height: 500px; overflow-y: scroll">
+    <table border="0" style="height: auto">
         <thead>
             <tr>
-                <th>Artikel Nummer</th>
+                <th>Artikelnummer</th>
                 <th>Ger&auml;te-Name</th>
                 <th>Kategorie</th>
                 <th>Reservierungsstatus</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="overflow-y: scroll">
             @foreach (var ger in Model)
             {
                 <tr>
-                    <th>@ger.ID</th>
-                    <th>@ger.Name</th>
-                    <th>@ger.Kategorie</th>
-
-                    <th>@StringEnum.GetStringValue(ger.GeraeteStatus)</th>
-
+                    <th style="font-weight:normal">@ger.ID</th>
+                    <th style="font-weight:normal">@ger.Name</th>
+                    <th style="font-weight:normal">@ger.Kategorie</th>
+                    <th style="font-weight:normal">@StringEnum.GetStringValue(ger.GeraeteStatus)</th>
                 </tr>
             }
         </tbody>

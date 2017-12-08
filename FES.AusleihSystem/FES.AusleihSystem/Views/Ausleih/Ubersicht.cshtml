@@ -1,35 +1,49 @@
 @model List<FES.AusleihSystem.ViewModels.ReservierungViewModel>
 
-    <h2>Reservierungen</h2>
+<h2>Momentane Reservierungen</h2>
 
-    <div class="form-control" style="height: 500px; overflow-y: scroll;">
-        <table border="0">
-            <thead>
-                <tr>
-                    <th>Ger&auml;t</th>
-                    <th>Ausleihdauer</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var reserver in Model)
-                {
+<div class="form-control" style="height: 500px; overflow-y: scroll;">
+    <table border="0" style="height: auto">
+        <thead>
+            <tr>
+                <th>Ger&auml;t</th>
+                <th>Ausleihdauer</th>
+                <th>Ger&auml;testatus</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserver in Model)
+            {
                 <tr>
                     <th>
-                        <text>Nr. @reserver.ReservierungsNummer</text>
+                        <text>Hier Ger.-Name !!!!</text>
                         <br />
-                        @*<text>@Hw.Name</text>*@
+                        <text>@reserver.ReservierungsNummer</text>
+                        <br />
                     </th>
                     <th>
                         <text>Von:  @reserver.ReservierungsBeginn</text>
                         <br />
                         <text>Bis:  @reserver.ReservierungsEnde</text>
                         <br />
+                    </th>
+                    <th>
+                        @if (reserver.GeraeteListe.Count != 0)
+                        {
+                            <text>@reserver.GeraeteListe.FirstOrDefault().AusgeliehenStatus</text>
+                        }
+                    </th>
+                    <th>
+                        @*Hier nur ist entliehen setzen können, wenn es nicht bereits der Fall ist*@
+                        <text>@Html.ActionLink("ist entliehen", "IstReserviert", "Ausleih", reserver)</text>
+                        <br />
                         <text>@Html.ActionLink("Eintrag entfernen", "Loeschen", "Ausleih", reserver)</text>
                     </th>
                 </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 
 @*foreach hw in reserver graete später wieder einfügen*@

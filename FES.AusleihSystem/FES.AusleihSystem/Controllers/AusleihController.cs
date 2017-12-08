@@ -144,7 +144,19 @@ namespace FES.AusleihSystem.Controllers
             }
             return RedirectToAction("Ubersicht");
         }
-
+        [Authorize(Roles = "Admin")]
+        public IActionResult IstReserviert(GeraeteReservierungModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = _context.Geraete.First(g => g.EAN == model.GeraeteEan);
+                res.AusgeliehenStatus = GeraetViewModel.EntliehenStatus.isAusgeliehen;
+                _context.Geraete.Update(res);
+                _context.SaveChanges();
+                return RedirectToAction("Ubersicht");
+            }
+            return RedirectToAction("Ubersicht");
+        }
 
 
         private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)

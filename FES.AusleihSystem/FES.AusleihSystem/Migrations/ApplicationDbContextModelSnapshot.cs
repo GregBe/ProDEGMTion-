@@ -83,6 +83,8 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AusgeliehenStatus");
+
                     b.Property<int>("EAN");
 
                     b.Property<int?>("GeKategorieID");

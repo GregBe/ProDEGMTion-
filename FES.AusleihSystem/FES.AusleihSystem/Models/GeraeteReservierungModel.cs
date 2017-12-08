@@ -24,6 +24,5 @@ namespace FES.AusleihSystem.Models
 
         [DataType(DataType.Date)]
         public DateTime ReservierungsBeginn { get; set; }
-        
     }
 }
