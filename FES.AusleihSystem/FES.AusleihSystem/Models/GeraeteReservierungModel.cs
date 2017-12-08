@@ -24,6 +24,14 @@ namespace FES.AusleihSystem.Models
 
         [DataType(DataType.Date)]
         public DateTime ReservierungsBeginn { get; set; }
+
+        [NotMapped]
+        public GerateTabelleViewModel GerateTabelle { get; set; } = new GerateTabelleViewModel();
         
+        public object ChangeKategorie(object option)
+        {
+            Console.WriteLine("#######################"+option.ToString());
+            return new object();
+        }
     }
 }

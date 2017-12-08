@@ -170,7 +170,26 @@ namespace FES.AusleihSystem.Controllers
 
             return result;
         }
+        public IActionResult GerateTabelleReload(GeraeteReservierungModel model)
+        {
+            var gerateList = _context.Geraete.Where(g => g.Kategorie == model.Kategorie.Name);
+            model.GerateTabelle.CleanList();
 
+            foreach (var item in gerateList)
+            {
+                model.GerateTabelle.AddGeraet(item);
+            }
+            return RedirectToAction("Ubersicht");
+        }
+        public IActionResult GerateTabelleReload(int id)
+        {
+            return RedirectToAction("Ubersicht");
+        }
+        public JsonResult GerateTabelleReloadJson(int id)
+        {
+            var result = Json(_context.Geraete.Where(g => g.GeKategorie.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar).OrderBy(o=>o.ID).ToList());
+            return result;
+        }
         public List<GeraetViewModel> GetGeraete()
         {
             return _context.Geraete.ToList();

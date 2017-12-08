@@ -100,7 +100,7 @@ namespace FES.AusleihSystem.Controllers
             for (int i = 0; i < SeedSize; i++)
             {
                 name = ran.Next(0, 6);
-                var catint = ran.Next(1, 3);
+                var catint = ran.Next(1, 4);
                 ean = ran.Next(10000000, 99999999);
                 var gerat = new GeraetViewModel()
                 {
