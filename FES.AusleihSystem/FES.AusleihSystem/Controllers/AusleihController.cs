@@ -44,15 +44,12 @@ namespace FES.AusleihSystem.Controllers
             IQueryable<GeraetViewModel> gerList;
             using (var ctx = _context)
             {
-
                 res = ctx.Reservierungen.ToList();
                 foreach (var reservierung in res)
                 {
                     gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
                     reservierung.GeraeteListe = gerList.ToList();
                 }
-
-
             }
             return View(res);
         }
@@ -67,6 +64,7 @@ namespace FES.AusleihSystem.Controllers
 
             GeraeteReservierungModel model = new GeraeteReservierungModel();
             model.KategorieList= _context.Kategorien.ToList();
+            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
             model.ReservierungsBeginn = DateTime.Now;
             model.ReservierungsEnde = DateTime.Now;
             return View(model);
@@ -83,15 +81,15 @@ namespace FES.AusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
+                
                 var VM = new ReservierungViewModel()
                 {
+
                     Nutzer = await _user.GetUserAsync(User),
                     GeraeteListe = GetGeraet(model.GeraeteEan),
-                    //GeraeteListe = new List<GeraetViewModel>() { _context.Geraete.Where((o) => o.EAN == model.GeraeteEan).FirstOrDefault() },
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
+                    //ReservierungsDauer = model.ReservierungsDauer,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
 
@@ -144,7 +142,19 @@ namespace FES.AusleihSystem.Controllers
             }
             return RedirectToAction("Ubersicht");
         }
-
+        [Authorize(Roles = "Admin")]
+        public IActionResult IstReserviert(GeraeteReservierungModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = _context.Geraete.First(g => g.EAN == model.GeraeteEan);
+                res.AusgeliehenStatus = GeraetViewModel.EntliehenStatus.isAusgeliehen;
+                _context.Geraete.Update(res);
+                _context.SaveChanges();
+                return RedirectToAction("Ubersicht");
+            }
+            return RedirectToAction("Ubersicht");
+        }
 
 
         private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)

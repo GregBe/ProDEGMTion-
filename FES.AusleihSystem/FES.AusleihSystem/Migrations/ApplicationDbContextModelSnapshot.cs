@@ -83,6 +83,8 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AusgeliehenStatus");
+
                     b.Property<int>("EAN");
 
                     b.Property<int?>("GeKategorieID");
@@ -112,8 +114,6 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<string>("NutzerId");
 
                     b.Property<DateTime>("ReservierungsBeginn");
-
-                    b.Property<TimeSpan>("ReservierungsDauer");
 
                     b.Property<DateTime>("ReservierungsEnde");
 
