@@ -180,17 +180,17 @@ namespace FES.AusleihSystem.Controllers
 
             return result;
         }
-        public IActionResult GerateTabelleReload(GeraeteReservierungModel model)
-        {
-            var gerateList = _context.Geraete.Where(g => g.Kategorie == model.Kategorie.Name);
-            model.GerateTabelle.CleanList();
+        //public IActionResult GerateTabelleReload(GeraeteReservierungModel model)
+        //{
+        //    var gerateList = _context.Geraete.Where(g => g.Kategorie == model.Kategorie.Name);
+        //    model.GerateTabelle.CleanList();
 
-            foreach (var item in gerateList)
-            {
-                model.GerateTabelle.AddGeraet(item);
-            }
-            return RedirectToAction("Ubersicht");
-        }
+        //    foreach (var item in gerateList)
+        //    {
+        //        model.GerateTabelle.AddGeraet(item);
+        //    }
+        //    return RedirectToAction("Ubersicht");
+        //}
         public IActionResult GerateTabelleReload(int id)
         {
             return RedirectToAction("Ubersicht");
