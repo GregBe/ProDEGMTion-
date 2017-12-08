@@ -35,13 +35,10 @@ namespace FES.AusleihSystem.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
             return View();
         }
 

@@ -58,10 +58,15 @@ namespace FES.AusleihSystem.Controllers
         [Authorize]
         public IActionResult ReservierungAnlegen()
         {
-            List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
-            kat = _context.Kategorien.ToList();
-            ViewBag.kategorien = kat;
-            return View();
+            //List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
+            //kat = _context.Kategorien.ToList();
+            //ViewBag.kategorien = kat;
+
+            GeraeteReservierungModel model = new GeraeteReservierungModel();
+            model.KategorieList= _context.Kategorien.ToList();
+            model.ReservierungsBeginn = DateTime.Now;
+            model.ReservierungsEnde = DateTime.Now;
+            return View(model);
         }
 
         /// <summary>
@@ -81,7 +86,11 @@ namespace FES.AusleihSystem.Controllers
 
                     Nutzer = await _user.GetUserAsync(User),
                     GeraeteListe = GetGeraet(model.GeraeteEan),
+<<<<<<< HEAD
                     //GeraeteListe = new List<GeraetViewModel>() { GetGeraetByKategorie(model.Kategorie) },
+=======
+                    //GeraeteListe = new List<GeraetViewModel>() { _context.Geraete.Where((o) => o.EAN == model.GeraeteEan).FirstOrDefault() },
+>>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
                     //ReservierungsDauer = model.ReservierungsDauer,
@@ -116,15 +125,19 @@ namespace FES.AusleihSystem.Controllers
                 else
                 {
                     var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
-                    foreach (var gerat in res.GeraeteListe)
+                    var geraete = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == res.ReservierungsNummer);
+                    foreach (var gerat in geraete)
                     {
+                        //_context.Geraete.Remove(gerat);
                         gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
                         gerat.Reservierung = null;
                         //_context.Geraete.Update(g => g.ID == gerat.ID);
                         //_context.Reservierungen.Remove(res);
-
+                        // _context.Geraete.Add(gerat);
+                        _context.Geraete.Update(gerat);
 
                     }
+
                     _context.Reservierungen.Remove(res);
                     _context.SaveChanges();
                 }
@@ -138,7 +151,8 @@ namespace FES.AusleihSystem.Controllers
 
         private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)
         {
-            return _context.Geraete.Where(g => (g.Kategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar)).FirstOrDefault();
+            var cont = _context.Geraete.Where(g => (g.GeKategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
+            return cont.FirstOrDefault();
         }
         private List<GeraetViewModel> GetGeraet(int id)
         {
@@ -157,6 +171,11 @@ namespace FES.AusleihSystem.Controllers
             }
 
             return result;
+        }
+
+        public List<GeraetViewModel> GetGeraete()
+        {
+            return _context.Geraete.ToList();
         }
     }
 }

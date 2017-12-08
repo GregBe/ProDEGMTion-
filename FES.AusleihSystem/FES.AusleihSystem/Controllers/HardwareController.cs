@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using FES.AusleihSystem.ViewModels;
 using FES.AusleihSystem.Data;
 using Microsoft.AspNetCore.Authorization;
+using FES.AusleihSystem.Models;
 
 namespace FES.AusleihSystem.Controllers
 {
@@ -39,6 +40,9 @@ namespace FES.AusleihSystem.Controllers
             [Authorize(Roles ="Admin")]
             public IActionResult AddGeraet()
             {
+                List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
+                kat = _context.Kategorien.ToList();
+                ViewBag.kategorien = kat;
                 return View();
             }
             /// <summary>
@@ -51,6 +55,7 @@ namespace FES.AusleihSystem.Controllers
             {
                 using (var ctx = _context)
                 {
+                    geraet.GeKategorie = ctx.Kategorien.Where((o) => o.Name.Equals(geraet.Kategorie)).FirstOrDefault();
                     ctx.Geraete.Add(geraet);
                     ctx.SaveChanges();
                 }
@@ -68,7 +73,7 @@ namespace FES.AusleihSystem.Controllers
                 List<GeraetViewModel> ger = new List<GeraetViewModel>();
                 using (var ctx = _context)
                 {
-                    var list = ctx.Geraete;
+                    var list = ctx.Geraete.Where((o)=>o.Kategorie !=null);
                     ger = list.ToList();
                 }
 

@@ -18,6 +18,7 @@ namespace FES.AusleihSystem.Controllers
         /// Register
         /// Login
         /// Logout
+        /// Password reset
         /// </summary>
         private UserManager<ApplicationUser> _nutzer;
         private SignInManager<ApplicationUser> _signInManager;
@@ -113,6 +114,23 @@ namespace FES.AusleihSystem.Controllers
         {
             await _signInManager.SignOutAsync();
             //_logger.LogInformation("User logged out.");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(PasswordResetViewModel model)
+        {
+            var currentUser = await _nutzer.FindByEmailAsync(model.Email);
+            string token = await _nutzer.GeneratePasswordResetTokenAsync(currentUser);
+            IdentityResult passwordChangeResult = await _nutzer.ResetPasswordAsync(currentUser, token, model.Passwort);
             return RedirectToAction("Index", "Home");
         }
     }

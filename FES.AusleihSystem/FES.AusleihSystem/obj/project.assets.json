@@ -10930,7 +10930,11 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Moritz.Groß\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\": {}
+>>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
   },
   "project": {
     "version": "1.0.0",
@@ -10938,6 +10942,7 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Moritz.Groß\\Source\\Repos\\ProDEGMTion-\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
       "projectName": "FES.AusleihSystem",
       "projectPath": "C:\\Users\\Moritz.Groß\\Source\\Repos\\ProDEGMTion-\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
@@ -10946,6 +10951,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Moritz.Groß\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
+      "projectName": "FES.AusleihSystem",
+      "projectPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\FES.AusleihSystem.csproj",
+      "packagesPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gregor.Baumgärtner.SINC\\Documents\\Git\\ProDEGMTion-\\FES.AusleihSystem\\FES.AusleihSystem\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Gregor.Baumgärtner.SINC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10954,7 +10969,10 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
+<<<<<<< HEAD
         "\\\\sinc-intern.de\\ablage\\software\\NuGetFeeds\\SINCShared": {},
+=======
+>>>>>>> b3097d6257b8a9f5cb5c80970260e7ba4db36ab5
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
