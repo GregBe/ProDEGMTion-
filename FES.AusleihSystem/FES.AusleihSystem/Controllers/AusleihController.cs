@@ -64,6 +64,7 @@ namespace FES.AusleihSystem.Controllers
 
             GeraeteReservierungModel model = new GeraeteReservierungModel();
             model.KategorieList= _context.Kategorien.ToList();
+            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
             model.ReservierungsBeginn = DateTime.Now;
             model.ReservierungsEnde = DateTime.Now;
             return View(model);

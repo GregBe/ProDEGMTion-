@@ -115,8 +115,6 @@ namespace FES.AusleihSystem.Migrations
 
                     b.Property<DateTime>("ReservierungsBeginn");
 
-                    b.Property<TimeSpan>("ReservierungsDauer");
-
                     b.Property<DateTime>("ReservierungsEnde");
 
                     b.Property<DateTime>("ReservierungsZeitpunkt");
