@@ -67,6 +67,8 @@ namespace FES.AusleihSystem.Controllers
 //            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
             model.ReservierungsBeginn = DateTime.Now;
             model.ReservierungsEnde = DateTime.Now;
+            model.ReservierungsBeginnZeit = DateTime.Now;
+            model.ReservierungsEndeZeit = DateTime.Now.AddMinutes(45.0);
             return View(model);
         }
 

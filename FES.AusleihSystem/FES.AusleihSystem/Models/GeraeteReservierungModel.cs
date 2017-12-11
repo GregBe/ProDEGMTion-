@@ -19,7 +19,6 @@ namespace FES.AusleihSystem.Models
         public List<GeraeteKategorie> KategorieList { get; set; } = new List<GeraeteKategorie>();
 
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ReservierungsEnde { get; set; }
 
         [DataType(DataType.Date)]
@@ -27,6 +26,7 @@ namespace FES.AusleihSystem.Models
         [DataType(DataType.Time)]
         public DateTime ReservierungsBeginnZeit { get; set; }
         [DataType(DataType.Time)]
+        
         public DateTime ReservierungsEndeZeit { get; set; }
     }
 }
