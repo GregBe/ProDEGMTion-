@@ -83,11 +83,15 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AusgeliehenStatus");
+
                     b.Property<int>("EAN");
+
+                    b.Property<int?>("GeKategorieID");
 
                     b.Property<int>("GeraeteStatus");
 
-                    b.Property<int?>("KategorieID");
+                    b.Property<string>("Kategorie");
 
                     b.Property<string>("Name");
 
@@ -95,7 +99,7 @@ namespace FES.AusleihSystem.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("KategorieID");
+                    b.HasIndex("GeKategorieID");
 
                     b.HasIndex("ReservierungsNummer");
 
@@ -110,8 +114,6 @@ namespace FES.AusleihSystem.Migrations
                     b.Property<string>("NutzerId");
 
                     b.Property<DateTime>("ReservierungsBeginn");
-
-                    b.Property<TimeSpan>("ReservierungsDauer");
 
                     b.Property<DateTime>("ReservierungsEnde");
 
@@ -233,9 +235,9 @@ namespace FES.AusleihSystem.Migrations
 
             modelBuilder.Entity("FES.AusleihSystem.ViewModels.GeraetViewModel", b =>
                 {
-                    b.HasOne("FES.AusleihSystem.Models.GeraeteKategorie", "Kategorie")
+                    b.HasOne("FES.AusleihSystem.Models.GeraeteKategorie", "GeKategorie")
                         .WithMany()
-                        .HasForeignKey("KategorieID");
+                        .HasForeignKey("GeKategorieID");
 
                     b.HasOne("FES.AusleihSystem.ViewModels.ReservierungViewModel", "Reservierung")
                         .WithMany("GeraeteListe")

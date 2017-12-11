@@ -94,17 +94,21 @@ namespace FES.AusleihSystem.Controllers
             Random ran;
             int name;
             int ean;
+            KategorieSeeding();
             ran = new Random();
             //Geräte Seeding
             for (int i = 0; i < SeedSize; i++)
             {
-
                 name = ran.Next(0, 6);
+                var catint = ran.Next(1, 4);
                 ean = ran.Next(10000000, 99999999);
                 var gerat = new GeraetViewModel()
                 {
                     Name = GeraeteNamen[name],
                     GeraeteStatus = GeraetViewModel.Status.isVerfugbar,
+                    Kategorie = _context.Kategorien.Where((o) => o.ID == catint).FirstOrDefault().Name,
+                    GeKategorie = _context.Kategorien.Where((o) => o.ID == catint).FirstOrDefault(),                
+                   // Kategorie = _context.Kategorien.Where((o) => o.ID == name % 3).FirstOrDefault(),
                     EAN = ean,
                 };
                 _context.Geraete.Add(gerat);
@@ -118,9 +122,25 @@ namespace FES.AusleihSystem.Controllers
             }
             if (_context.Kategorien.Count() < 1)
             {
-                KategorieSeeding();
+               
             }
 
+        }
+        public void AddKatToGeraet()
+        {
+            var ger = _context.Geraete.Where((o) => o.GeKategorie == null || o.Kategorie == null);
+            var rand = new Random();
+            
+            foreach (var item in ger.ToList())
+            {
+                var i = rand.Next(1, 3);
+                var gerat = _context.Geraete.Where((o) => o.ID == item.ID).FirstOrDefault();
+                gerat.Kategorie = _context.Kategorien.Where((o) => o.ID == i).FirstOrDefault().Name;
+                gerat.GeKategorie = _context.Kategorien.Where((o) => o.ID == i).FirstOrDefault();
+                _context.Geraete.Remove(item);
+                _context.Geraete.Add(gerat);
+            }
+            _context.SaveChangesAsync();
         }
     }
 }

@@ -44,15 +44,12 @@ namespace FES.AusleihSystem.Controllers
             IQueryable<GeraetViewModel> gerList;
             using (var ctx = _context)
             {
-
                 res = ctx.Reservierungen.ToList();
                 foreach (var reservierung in res)
                 {
                     gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
                     reservierung.GeraeteListe = gerList.ToList();
                 }
-
-
             }
             return View(res);
         }
@@ -61,10 +58,16 @@ namespace FES.AusleihSystem.Controllers
         [Authorize]
         public IActionResult ReservierungAnlegen()
         {
-            List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
-            kat = _context.Kategorien.ToList();
-            ViewBag.kategorien = kat;
-            return View();
+            //List<GeraeteKategorie> kat = new List<GeraeteKategorie>();
+            //kat = _context.Kategorien.ToList();
+            //ViewBag.kategorien = kat;
+
+            GeraeteReservierungModel model = new GeraeteReservierungModel();
+            model.KategorieList= _context.Kategorien.ToList();
+            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
+            model.ReservierungsBeginn = DateTime.Now;
+            model.ReservierungsEnde = DateTime.Now;
+            return View(model);
         }
 
         /// <summary>
@@ -78,15 +81,15 @@ namespace FES.AusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
+                
                 var VM = new ReservierungViewModel()
                 {
+
                     Nutzer = await _user.GetUserAsync(User),
-                    //GeraeteListe = GetGeraet(model.GeraeteEan),
-                    GeraeteListe = new List<GeraetViewModel>() { GetGeraetByKategorie(model.Kategorie) },
+                    GeraeteListe = GetGeraet(model.GeraeteEan),
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
+                    //ReservierungsDauer = model.ReservierungsDauer,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
 
@@ -118,15 +121,19 @@ namespace FES.AusleihSystem.Controllers
                 else
                 {
                     var res = _context.Reservierungen.First(g => g.ReservierungsNummer == model.ReservierungsNummer);
-                    foreach (var gerat in res.GeraeteListe)
+                    var geraete = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == res.ReservierungsNummer);
+                    foreach (var gerat in geraete)
                     {
+                        //_context.Geraete.Remove(gerat);
                         gerat.GeraeteStatus = GeraetViewModel.Status.isVerfugbar;
                         gerat.Reservierung = null;
                         //_context.Geraete.Update(g => g.ID == gerat.ID);
                         //_context.Reservierungen.Remove(res);
-
+                        // _context.Geraete.Add(gerat);
+                        _context.Geraete.Update(gerat);
 
                     }
+
                     _context.Reservierungen.Remove(res);
                     _context.SaveChanges();
                 }
@@ -135,12 +142,25 @@ namespace FES.AusleihSystem.Controllers
             }
             return RedirectToAction("Ubersicht");
         }
-
+        [Authorize(Roles = "Admin")]
+        public IActionResult IstReserviert(GeraeteReservierungModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = _context.Geraete.First(g => g.EAN == model.GeraeteEan);
+                res.AusgeliehenStatus = GeraetViewModel.EntliehenStatus.isAusgeliehen;
+                _context.Geraete.Update(res);
+                _context.SaveChanges();
+                return RedirectToAction("Ubersicht");
+            }
+            return RedirectToAction("Ubersicht");
+        }
 
 
         private GeraetViewModel GetGeraetByKategorie(GeraeteKategorie kat)
         {
-            return _context.Geraete.Where(g => (g.Kategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar)).FirstOrDefault();
+            var cont = _context.Geraete.Where(g => (g.GeKategorie.Name == kat.Name && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
+            return cont.FirstOrDefault();
         }
         private List<GeraetViewModel> GetGeraet(int id)
         {
@@ -160,21 +180,29 @@ namespace FES.AusleihSystem.Controllers
 
             return result;
         }
+        //public IActionResult GerateTabelleReload(GeraeteReservierungModel model)
+        //{
+        //    var gerateList = _context.Geraete.Where(g => g.Kategorie == model.Kategorie.Name);
+        //    model.GerateTabelle.CleanList();
 
-        // TODO
-        public IActionResult Ueberzogen()
+        //    foreach (var item in gerateList)
+        //    {
+        //        model.GerateTabelle.AddGeraet(item);
+        //    }
+        //    return RedirectToAction("Ubersicht");
+        //}
+        public IActionResult GerateTabelleReload(int id)
         {
-            List<ReservierungViewModel> ueb = new List<ReservierungViewModel>();
-            IQueryable<GeraetViewModel> gerList;
-
-            ueb = _context.Reservierungen.ToList();
-            foreach (var reservierung in ueb)
-            {
-                gerList = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer && reservierung.ReservierungsEnde - DateTime.Now > TimeSpan.Zero);
-                reservierung.GeraeteListe = gerList.ToList();
-            }
-
-            return View(ueb);
+            return RedirectToAction("Ubersicht");
+        }
+        public JsonResult GerateTabelleReloadJson(int id)
+        {
+            var result = Json(_context.Geraete.Where(g => g.GeKategorie.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar).OrderBy(o=>o.ID).ToList());
+            return result;
+        }
+        public List<GeraetViewModel> GetGeraete()
+        {
+            return _context.Geraete.ToList();
         }
     }
 }

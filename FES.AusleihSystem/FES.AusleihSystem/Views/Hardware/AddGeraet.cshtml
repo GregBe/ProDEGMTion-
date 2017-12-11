@@ -3,23 +3,28 @@
 
 
 <div style="width: 200px">
-<form asp-controller="Hardware" asp-Action="AddGeraet" method="post">
-    <div class="form-group">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" class="form-control">
-    </div>
-    <div class="form-group">
-        <label asp-for="EAN">EAN</label>
-        <input asp-for="EAN" class="form-control">
-    </div>
-    <div>
-        <label asp-for="Kategorie"></label>
-        <select asp-for="Kategorie" asp-items="@(new SelectList(ViewBag.KategorieListe,"ID","Name"))"></select>
-    </div>
-    <div style="width:100px" class="form-group">
-        <button class="form-control" type="submit">Hinzuf&uuml;gen</button>
-    </div>
-</form>
+    <form asp-controller="Hardware" asp-Action="AddGeraet" method="post">
+        <div class="form-group">
+            <label asp-for="Kategorie"></label>
+            <select name="Kategorie" class="form-control" asp-for="Kategorie">
+                @foreach (var kat in (List<GeraeteKategorie>)ViewBag.kategorien)
+                {
+                    <option>@kat.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="EAN">EAN</label>
+            <input asp-for="EAN" class="form-control">
+        </div>
+        <div style="width:100px" class="form-group">
+            <button class="form-control" type="submit">Hinzuf&uuml;gen</button>
+        </div>
+    </form>
 </div>
 
 

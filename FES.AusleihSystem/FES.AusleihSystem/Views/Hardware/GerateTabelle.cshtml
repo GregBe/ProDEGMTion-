@@ -1,0 +1,21 @@
+
+@model FES.AusleihSystem.ViewModels.GerateTabelleViewModel
+
+<table border="0">
+    <thead>
+        <tr>
+            <th>Artikel Nummer</th>
+            <th>Ger&auml;te-Name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ger in Model.Geraete)
+            {
+            <tr>
+                <th>@ger.ID</th>
+                <th>@ger.Name</th>
+            </tr>
+        }
+    </tbody>
+</table>
