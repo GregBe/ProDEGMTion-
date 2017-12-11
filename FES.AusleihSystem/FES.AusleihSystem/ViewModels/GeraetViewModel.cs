@@ -27,15 +27,7 @@ namespace FES.AusleihSystem.ViewModels
             [StringValue("Entfernt")]
             isEntfernt
         };
-        public enum EntliehenStatus
-        {
-            [StringValue("Ausgeliehen")]
-            isAusgeliehen,
-            [StringValue("Nicht ausgeliehen")]
-            isNichtAusgeliehen,
-        };
 
-        public EntliehenStatus AusgeliehenStatus { get; set; } = EntliehenStatus.isNichtAusgeliehen;
 
         public int ID { get; set; }
         public string Name { get; set; }

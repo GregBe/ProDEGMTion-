@@ -64,7 +64,7 @@ namespace FES.AusleihSystem.Controllers
 
             GeraeteReservierungModel model = new GeraeteReservierungModel();
             model.KategorieList= _context.Kategorien.ToList();
-            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
+//            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
             model.ReservierungsBeginn = DateTime.Now;
             model.ReservierungsEnde = DateTime.Now;
             return View(model);
@@ -81,7 +81,7 @@ namespace FES.AusleihSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                var nutzer = await _user.GetUserAsync(User);
                 var VM = new ReservierungViewModel()
                 {
 
@@ -89,7 +89,7 @@ namespace FES.AusleihSystem.Controllers
                     GeraeteListe = GetGeraet(model.GeraeteEan),
                     ReservierungsBeginn = model.ReservierungsBeginn,
                     ReservierungsEnde = model.ReservierungsEnde,
-                    //ReservierungsDauer = model.ReservierungsDauer,
+                    ReservierungsDauer = model.ReservierungsEnde-model.ReservierungsBeginn,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
 
@@ -143,13 +143,13 @@ namespace FES.AusleihSystem.Controllers
             return RedirectToAction("Ubersicht");
         }
         [Authorize(Roles = "Admin")]
-        public IActionResult IstReserviert(GeraeteReservierungModel model)
+        public IActionResult IstReserviert(ReservierungViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var res = _context.Geraete.First(g => g.EAN == model.GeraeteEan);
-                res.AusgeliehenStatus = GeraetViewModel.EntliehenStatus.isAusgeliehen;
-                _context.Geraete.Update(res);
+                var res = _context.Reservierungen.Where(r => r.ReservierungsNummer == model.ReservierungsNummer).FirstOrDefault();
+                res.AusgeliehenStatus = ReservierungViewModel.EntliehenStatus.isAusgeliehen;
+                _context.Reservierungen.Update(res);
                 _context.SaveChanges();
                 return RedirectToAction("Ubersicht");
             }

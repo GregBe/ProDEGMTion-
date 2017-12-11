@@ -28,7 +28,15 @@ namespace FES.AusleihSystem.ViewModels
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ReservierungsEnde { get; set; }
 
+        public enum EntliehenStatus
+        {
+            [StringValue("Ausgeliehen")]
+            isAusgeliehen,
+            [StringValue("Nicht ausgeliehen")]
+            isNichtAusgeliehen,
+        };
 
+        public EntliehenStatus AusgeliehenStatus { get; set; } = EntliehenStatus.isNichtAusgeliehen;
 
         //[DataType(DataType.Time)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
@@ -36,7 +44,7 @@ namespace FES.AusleihSystem.ViewModels
 
         //[DataType(DataType.Date)]
 
-        //public TimeSpan ReservierungsDauer { get; set; }
+        public TimeSpan ReservierungsDauer { get; set; }
         [DataType(DataType.Time)]
         public DateTime ReservierungsBeginn { get; set; }
 
