@@ -36,19 +36,24 @@ namespace FES.AusleihSystem.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public IActionResult Ubersicht(string errormsg = null)
+        public async Task<IActionResult> Ubersicht(string errormsg = null)
         {
-
             List<ReservierungViewModel> res = new List<ReservierungViewModel>();
             GeraetViewModel ger = new GeraetViewModel();
             IQueryable<GeraetViewModel> gerList;
+            var userID = _user.GetUserId(User);
+            var userRole = await _user.IsInRoleAsync(await _user.GetUserAsync(User), "Admin");
             using (var ctx = _context)
             {
-                res = ctx.Reservierungen.ToList();
-                foreach (var reservierung in res)
+                foreach (var reservierung in ctx.Reservierungen)
                 {
-                    gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
-                    reservierung.GeraeteListe = gerList.ToList();
+                    if (userRole|| reservierung.NutzerID == userID)
+                    {
+                        gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
+                        reservierung.GeraeteListe = gerList.ToList();
+                        res.Add(reservierung);
+                    }
+
                 }
             }
             return View(res);
@@ -63,8 +68,8 @@ namespace FES.AusleihSystem.Controllers
             //ViewBag.kategorien = kat;
 
             GeraeteReservierungModel model = new GeraeteReservierungModel();
-            model.KategorieList= _context.Kategorien.ToList();
-//            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
+            model.KategorieList = _context.Kategorien.ToList();
+            //            model.ReservierungsDauer = model.ReservierungsEnde - model.ReservierungsBeginn;
             model.ReservierungsBeginn = DateTime.Now;
             model.ReservierungsEnde = DateTime.Now;
             model.ReservierungsBeginnZeit = DateTime.Now;
@@ -87,11 +92,11 @@ namespace FES.AusleihSystem.Controllers
                 var VM = new ReservierungViewModel()
                 {
 
-                    Nutzer = await _user.GetUserAsync(User),
+                    NutzerID = nutzer.Id,
                     GeraeteListe = GetGeraet(model.GeraeteEan),
                     ReservierungsBeginn = model.ReservierungsBeginn.Date + model.ReservierungsBeginnZeit.TimeOfDay,
                     ReservierungsEnde = model.ReservierungsEnde.Date + model.ReservierungsEndeZeit.TimeOfDay,
-                    ReservierungsDauerTage = model.ReservierungsEnde.Date-model.ReservierungsBeginn.Date,
+                    ReservierungsDauerTage = model.ReservierungsEnde.Date - model.ReservierungsBeginn.Date,
                     ReservierungsDauerStunden = model.ReservierungsEndeZeit - model.ReservierungsBeginnZeit,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
@@ -200,7 +205,7 @@ namespace FES.AusleihSystem.Controllers
         }
         public JsonResult GerateTabelleReloadJson(int id)
         {
-            var result = Json(_context.Geraete.Where(g => g.GeKategorie.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar).OrderBy(o=>o.ID).ToList());
+            var result = Json(_context.Geraete.Where(g => g.GeKategorie.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar).OrderBy(o => o.ID).ToList());
             return result;
         }
         public List<GeraetViewModel> GetGeraete()
