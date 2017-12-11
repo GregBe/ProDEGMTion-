@@ -44,7 +44,8 @@ namespace FES.AusleihSystem.ViewModels
 
         //[DataType(DataType.Date)]
 
-        public TimeSpan ReservierungsDauer { get; set; }
+        public TimeSpan ReservierungsDauerTage { get; set; }
+        public TimeSpan ReservierungsDauerStunden { get; set; }
         [DataType(DataType.Time)]
         public DateTime ReservierungsBeginn { get; set; }
 

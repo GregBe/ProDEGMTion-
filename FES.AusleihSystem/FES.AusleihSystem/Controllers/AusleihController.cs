@@ -87,9 +87,10 @@ namespace FES.AusleihSystem.Controllers
 
                     Nutzer = await _user.GetUserAsync(User),
                     GeraeteListe = GetGeraet(model.GeraeteEan),
-                    ReservierungsBeginn = model.ReservierungsBeginn,
-                    ReservierungsEnde = model.ReservierungsEnde,
-                    ReservierungsDauer = model.ReservierungsEnde-model.ReservierungsBeginn,
+                    ReservierungsBeginn = model.ReservierungsBeginn.Date + model.ReservierungsBeginnZeit.TimeOfDay,
+                    ReservierungsEnde = model.ReservierungsEnde.Date + model.ReservierungsEndeZeit.TimeOfDay,
+                    ReservierungsDauerTage = model.ReservierungsEnde.Date-model.ReservierungsBeginn.Date,
+                    ReservierungsDauerStunden = model.ReservierungsEndeZeit - model.ReservierungsBeginnZeit,
                     ReservierungsZeitpunkt = DateTime.Now
                 };
 

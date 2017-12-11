@@ -27,6 +27,22 @@
                         <tr style="height: 50px">
                             <td>
                                 <div style="width: 150px" class="form-group">
+                                    <label asp-for="ReservierungsBeginnZeit"></label>
+                                    <input asp-for="ReservierungsBeginnZeit" class="form-control" />
+                                    <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 150px" class="form-group">
+                                    <label asp-for="ReservierungsEndeZeit"></label>
+                                    <input asp-for="ReservierungsEndeZeit" class="form-control" />
+                                    <span asp-validation-for="ReservierungsEndeZeit" class="text-danger"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="width: 150px" class="form-group">
                                     <label asp-for="ReservierungsBeginn"></label>
                                     <input asp-for="ReservierungsBeginn" class="form-control" />
                                     <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
