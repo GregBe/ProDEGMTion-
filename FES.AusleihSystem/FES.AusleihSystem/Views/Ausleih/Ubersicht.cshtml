@@ -17,7 +17,7 @@
             {
                 <tr>
                     <th>
-                        <text>Hier Ger.-Name !!!!</text>
+                        <text>@reserver.GeraeteListe.FirstOrDefault().Name</text>
                         <br />
                         <text>@reserver.ReservierungsNummer</text>
                         <br />
@@ -29,15 +29,15 @@
                         <br />
                     </th>
                     <th>
-                        @*@if (reserver.GeraeteListe.Count != 0)
-                        {
-                            <text>@reserver.GeraeteListe.FirstOrDefault().AusgeliehenStatus</text>
-                        }*@
+                        <text>@FES.AusleihSystem.ViewModels.StringEnum.GetStringValue(reserver.AusgeliehenStatus)</text>
                     </th>
                     <th>
                         @*Hier nur ist entliehen setzen können, wenn es nicht bereits der Fall ist*@
+                        @if(@reserver.AusgeliehenStatus == FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isNichtAusgeliehen)
+                        {
                         <text>@Html.ActionLink("ist entliehen", "IstReserviert", "Ausleih", reserver)</text>
                         <br />
+                        }
                         <text>@Html.ActionLink("Eintrag entfernen", "Loeschen", "Ausleih", reserver)</text>
                     </th>
                 </tr>
