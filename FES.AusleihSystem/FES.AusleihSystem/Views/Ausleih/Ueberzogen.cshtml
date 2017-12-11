@@ -1,0 +1,32 @@
+﻿@model List<FES.AusleihSystem.ViewModels.ReservierungViewModel>
+
+<h2>Offene Rückgaben</h2>
+
+<div class="form-control" style="height: 500px; overflow-y: scroll;">
+    <table border="0">
+        <thead>
+            <tr>
+                <th>Ger&auml;t</th>
+                <th>Überzogene Tage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserver in Model)
+            {
+                <tr>
+                    <th>
+                        <text>Nr. @reserver.ReservierungsNummer</text>
+                        <br />
+                        @*<text>@Hw.Name</text>*@
+                    </th>
+                    <th>
+                        <text>@(DateTime.Now - reserver.ReservierungsEnde)</text>
+                        <br />
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*foreach hw in reserver graete später wieder einfügen*@

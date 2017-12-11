@@ -160,5 +160,21 @@ namespace FES.AusleihSystem.Controllers
 
             return result;
         }
+
+        // TODO
+        public IActionResult Ueberzogen()
+        {
+            List<ReservierungViewModel> ueb = new List<ReservierungViewModel>();
+            IQueryable<GeraetViewModel> gerList;
+
+            ueb = _context.Reservierungen.ToList();
+            foreach (var reservierung in ueb)
+            {
+                gerList = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer && reservierung.ReservierungsEnde - DateTime.Now > TimeSpan.Zero);
+                reservierung.GeraeteListe = gerList.ToList();
+            }
+
+            return View(ueb);
+        }
     }
 }
