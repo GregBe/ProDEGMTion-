@@ -117,7 +117,7 @@ namespace FES.AusleihSystem.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Loeschen(ReservierungViewModel model)
         {
             if (ModelState.IsValid)
