@@ -10,20 +10,14 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
         <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-area="" asp-controller="SeedingData" asp-action="Seeding">Datenbank füllen</a></li>
+
             @if (User.IsInRole("Admin"))
             {
                 <li><a asp-area="" asp-controller="Hardware" asp-action="AddGeraet">Gerät hinzufügen</a></li>
             }
-            else
-            {
-                <li><a asp-area="" asp-controller="Account" asp-action="Profil">Profil</a></li>
-            }
 
             <li><a asp-area="" asp-controller="Hardware" asp-action="GeraeteAnsicht">Geräteanzeige</a></li>
-            
-            <li><a asp-area="" asp-controller="Ausleih" asp-action="Ubersicht">AusleihUbersicht</a></li>
+            <li><a asp-area="" asp-controller="Ausleih" asp-action="Ubersicht">Ausleihübersicht</a></li>
             <li><a asp-area="" asp-controller="Ausleih" asp-action="ReservierungAnlegen">Reservierungen</a></li>
 
 
@@ -41,7 +35,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="SeedingData" asp-action="Seeding">Datenbank füllen</a></li>
         <li><a asp-area="" asp-controller="Account" asp-action="Register">Registrieren</a></li>
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
     </ul>
