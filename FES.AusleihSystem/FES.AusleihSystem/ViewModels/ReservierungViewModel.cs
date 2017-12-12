@@ -25,7 +25,7 @@ namespace FES.AusleihSystem.ViewModels
         public DateTime ReservierungsZeitpunkt { get; set; }
 
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"{0:HH\:mm}")]
         public DateTime ReservierungsEnde { get; set; }
 
         public enum EntliehenStatus

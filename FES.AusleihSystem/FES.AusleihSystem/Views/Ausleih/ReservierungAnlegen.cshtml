@@ -23,7 +23,7 @@
                                     <td>
                                         <div class="form-group">
                                             <label asp-for="GeraeteEan">Geräte-EAN</label>
-                                            <input asp-for="GeraeteEan" class="form-control" />
+                                            <input asp-for="GeraeteEan" class="form-control"/>
                                         </div>
                                     </td>
                                 </tr>
@@ -38,7 +38,10 @@
                                     <td>
                                         <div style="width: 150px" class="form-group">
                                             <label asp-for="ReservierungsBeginnZeit">Zeit</label>
-                                            <input asp-for="ReservierungsBeginnZeit" class="form-control" />
+                                            <label asp-for="ReservierungsBeginnZeit">
+                                                @Html.TextBoxFor(x => x.ReservierungsBeginnZeit, "{0:HH:mm}", new { @class = "form-control", })
+                                            </label>
+                                            @*<input  class="form-control"/>*@
                                             <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
                                         </div>
                                     </td>
@@ -55,7 +58,10 @@
                                     <td>
                                         <div style="width: 150px" class="form-group">
                                             <label asp-for="ReservierungsEndeZeit">Zeit</label>
-                                            <input asp-for="ReservierungsEndeZeit" class="form-control" />
+                                            <label asp-for="ReservierungsEndeZeit">
+                                                @Html.TextBoxFor(x => x.ReservierungsEndeZeit, "{0:HH:mm}", new { @class = "form-control", })
+                                            </label>
+                                            @*<input asp-for="ReservierungsEndeZeit" class="form-control" />*@
                                             <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
                                         </div>
                                     </td>
