@@ -1,4 +1,5 @@
-﻿using FES.AusleihSystem.Models;
+﻿using FES.AusleihSystem.Data;
+using FES.AusleihSystem.Models;
 using FES.AusleihSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FES.AusleihSystem.Controllers
@@ -23,22 +25,48 @@ namespace FES.AusleihSystem.Controllers
         private UserManager<ApplicationUser> _nutzer;
         private SignInManager<ApplicationUser> _signInManager;
         private ILogger _logger;
+        private ApplicationDbContext _context;
        
         /// <summary>
         /// Der Konstruktor wird zur Laufzeit aufgerufen, sobald der User auf .../Account/... gelangt 
         /// </summary>
         /// <param name="nutzer">Übergibt den momentanen User und dessen Cookies</param>
         /// <param name="signInManager">Handelt alles rund ums Ein/Ausloggen</param>
-        public AccountController(UserManager<ApplicationUser> nutzer, SignInManager<ApplicationUser> signInManager)
+        public AccountController(ApplicationDbContext context,UserManager<ApplicationUser> nutzer, SignInManager<ApplicationUser> signInManager)
         {
             _nutzer = nutzer;
             _signInManager = signInManager;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Profil()
+        {
+            var user = await _nutzer.GetUserAsync(User);
+            var model = new AccountModel
+            {
+                Email = user.Email,
+                NutzerID = user.Id,
+                Reservierungen = _context.Reservierungen.Where(r => r.NutzerID == user.Id).ToList()
+            };
+
+            foreach (var res in model.Reservierungen)
+            {
+                var ger = _context.Geraete.Where(g => g.Reservierung.ReservierungsNummer == res.ReservierungsNummer).ToList();
+                foreach (var item in ger)
+                {
+                    res.GeraeteListe.Add(item);
+                }
+                
+            }
+            return View(model);
         }
 
         /// <summary>
@@ -121,6 +149,7 @@ namespace FES.AusleihSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassword()
         {
+            //var model = new PasswordResetViewModel(User.Identity.Name);
             return View();
         }
 
@@ -128,10 +157,14 @@ namespace FES.AusleihSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(PasswordResetViewModel model)
         {
-            var currentUser = await _nutzer.FindByEmailAsync(model.Email);
-            string token = await _nutzer.GeneratePasswordResetTokenAsync(currentUser);
-            IdentityResult passwordChangeResult = await _nutzer.ResetPasswordAsync(currentUser, token, model.Passwort);
-            return RedirectToAction("Index", "Home");
+
+            if (ModelState.IsValid)
+            {
+                var currentUser = await _nutzer.FindByEmailAsync(User.Identity.Name);
+                string token = await _nutzer.GeneratePasswordResetTokenAsync(currentUser);
+                IdentityResult passwordChangeResult = await _nutzer.ResetPasswordAsync(currentUser, token, model.Passwort);
+            }
+            return RedirectToAction("Profil");
         }
     }
 }

@@ -1,0 +1,66 @@
+@model FES.AusleihSystem.Models.AccountModel
+
+
+<div>
+    <text>EMail: @Model.Email</text>
+</div>
+<h1>Passwort zur&uuml;cksetzen</h1>
+@Html.Partial("ResetPassword", new FES.AusleihSystem.ViewModels.PasswordResetViewModel())
+<div class="form-control" style="height: 500px; overflow-y: scroll">
+    <table border="0" style="height: auto">
+        <thead>
+            <tr>
+                <th>Ger&auml;t</th>
+                <th>Ausleihdauer</th>
+                <th>Ger&auml;testatus</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserver in Model.Reservierungen)
+            {
+                @if (reserver.GeraeteListe.Count > 0)
+                {
+                    <tr>
+
+                        <th>
+
+                            <text>@reserver.GeraeteListe.FirstOrDefault().Name</text>
+                            <br />
+                            <text>@reserver.ReservierungsNummer</text>
+                            <br />
+
+                        </th>
+                        <th>
+
+                            <text>Von:  @reserver.ReservierungsBeginn</text>
+                            <br />
+                            <text>Bis:  @reserver.ReservierungsEnde</text>
+                            <br />
+
+                        </th>
+                        <th>
+                            <text>@FES.AusleihSystem.ViewModels.StringEnum.GetStringValue(reserver.AusgeliehenStatus)</text>
+
+                        </th>
+                        <th>
+
+                            @*Hier nur ist entliehen setzen können, wenn es nicht bereits der Fall ist*@
+                            @if (User.IsInRole("Admin") && @reserver.AusgeliehenStatus == FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isNichtAusgeliehen)
+                            {
+                                <text>@Html.ActionLink("ist entliehen", "IstReserviert", "Ausleih", reserver)</text>
+                                <br />
+                            }
+                            @if (User.IsInRole("Admin") || reserver.AusgeliehenStatus != FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isAusgeliehen)
+                            {
+                                <text>@Html.ActionLink("Eintrag entfernen", "Loeschen", "Ausleih", reserver)</text>
+                            }
+
+                        </th>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

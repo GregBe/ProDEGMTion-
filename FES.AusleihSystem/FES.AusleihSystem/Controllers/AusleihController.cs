@@ -49,7 +49,8 @@ namespace FES.AusleihSystem.Controllers
                 {
                     if (userRole|| reservierung.NutzerID == userID)
                     {
-                        gerList = ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);
+                        var posible = ctx.Geraete.Where(g => g.Reservierung != null);
+                        gerList = posible.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);/*ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);*/
                         reservierung.GeraeteListe = gerList.ToList();
                         res.Add(reservierung);
                     }

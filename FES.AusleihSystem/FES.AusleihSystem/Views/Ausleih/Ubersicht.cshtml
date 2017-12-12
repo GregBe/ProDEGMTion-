@@ -15,44 +15,47 @@
         <tbody>
             @foreach (var reserver in Model)
             {
-                <tr>
+                @if (reserver.GeraeteListe.Count >0)
+                {
+                    <tr>
 
-                    <th>
+                        <th>
 
-                        <text>@reserver.GeraeteListe.FirstOrDefault().Name</text>
-                        <br />
-                        <text>@reserver.ReservierungsNummer</text>
-                        <br />
-
-                    </th>
-                    <th>
-
-                        <text>Von:  @reserver.ReservierungsBeginn</text>
-                        <br />
-                        <text>Bis:  @reserver.ReservierungsEnde</text>
-                        <br />
-
-                    </th>
-                    <th>
-                        <text>@FES.AusleihSystem.ViewModels.StringEnum.GetStringValue(reserver.AusgeliehenStatus)</text>
-
-                    </th>
-                    <th>
-
-                        @*Hier nur ist entliehen setzen können, wenn es nicht bereits der Fall ist*@
-                        @if (User.IsInRole("Admin") && @reserver.AusgeliehenStatus == FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isNichtAusgeliehen)
-                        {
-                            <text>@Html.ActionLink("ist entliehen", "IstReserviert", "Ausleih", reserver)</text>
+                            <text>@reserver.GeraeteListe.FirstOrDefault().Name</text>
                             <br />
-                        }
-                        @if (User.IsInRole("Admin") || reserver.AusgeliehenStatus != FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isAusgeliehen)
-                        {
-                            <text>@Html.ActionLink("Eintrag entfernen", "Loeschen", "Ausleih", reserver)</text>
-                        }
+                            <text>@reserver.ReservierungsNummer</text>
+                            <br />
 
-                    </th>
+                        </th>
+                        <th>
 
-                </tr>
+                            <text>Von:  @reserver.ReservierungsBeginn</text>
+                            <br />
+                            <text>Bis:  @reserver.ReservierungsEnde</text>
+                            <br />
+
+                        </th>
+                        <th>
+                            <text>@FES.AusleihSystem.ViewModels.StringEnum.GetStringValue(reserver.AusgeliehenStatus)</text>
+
+                        </th>
+                        <th>
+
+                            @*Hier nur ist entliehen setzen können, wenn es nicht bereits der Fall ist*@
+                            @if (User.IsInRole("Admin") && @reserver.AusgeliehenStatus == FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isNichtAusgeliehen)
+                            {
+                                <text>@Html.ActionLink("ist entliehen", "IstReserviert", "Ausleih", reserver)</text>
+                                <br />
+                            }
+                            @if (User.IsInRole("Admin") || reserver.AusgeliehenStatus != FES.AusleihSystem.ViewModels.ReservierungViewModel.EntliehenStatus.isAusgeliehen)
+                            {
+                                <text>@Html.ActionLink("Eintrag entfernen", "Loeschen", "Ausleih", reserver)</text>
+                            }
+
+                        </th>
+
+                    </tr>
+                }
             }
         </tbody>
     </table>
