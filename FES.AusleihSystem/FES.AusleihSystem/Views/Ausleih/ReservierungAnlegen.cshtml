@@ -4,17 +4,17 @@
 @model FES.AusleihSystem.Models.GeraeteReservierungModel
 
 
-<h2>Reservierungen</h2>
+        <h2>Reservierungen</h2>
 
-<div>
+<div style="">
     <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
         <div class="form-group">
             <table border="0">
                 <thead>
                     <tr>
-                        <th valign="top" width="150px" style="padding-right:100px">
+                        <th valign="top" width="150px"  style="padding-right:100px">
                             <div class="form-group" style="width:130px">
-                                <label asp-for="Kategorie"></label>
+                                <label style="margin-bottom:15px" asp-for="Kategorie"></label>
                                 @Html.DropDownList("Kategorie", new SelectList(Model.KategorieList, "ID", "Name"), new { @class = "form-control" })
                             </div>
 
@@ -70,16 +70,18 @@
                             </table>
                         </th>
                         <th valign="top">
-                            <div style="height: 510px; overflow-y: scroll; width:400px">
+                            <div style="height: 700px; overflow-y: scroll; width:400px">
                                 <label class="form-group">Mögliche Ausleihgeräte</label>
                                 <table border="0" id="Products">
-                                    <thead>
+                                    <thead style="vertical-align:top">
                                         <tr>
                                             <th style="padding-left:0">Artikelnummer</th>
                                             <th style="padding-left:0">Ger&auml;tename</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+
+                                    </tbody>
                                 </table>
                             </div>
                         </th>
@@ -91,11 +93,11 @@
 </div>
 
 
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
 
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-    <script type="text/javascript">
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script type="text/javascript">
     $(document).ready(function () {
         $('#Kategorie').change(function () {
             $("#Products tbody tr").remove();
@@ -129,5 +131,5 @@
         })
 
     });
-    </script>
-}
+</script>
+        }
