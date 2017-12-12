@@ -8,9 +8,9 @@ namespace FES.AusleihSystem.ViewModels
 {
     public class PasswordResetViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -23,5 +23,11 @@ namespace FES.AusleihSystem.ViewModels
         [Display(Name = "Passwort erneut eingeben")]
         [Compare("Passwort", ErrorMessage = "Die Passwörter stimmen nicht überein")]
         public string ConfPasswort { get; set; }
+
+
+        public PasswordResetViewModel()
+        {
+
+        }
     }
 }

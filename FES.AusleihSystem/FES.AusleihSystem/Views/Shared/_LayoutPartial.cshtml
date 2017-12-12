@@ -18,7 +18,7 @@
             }
             else
             {
-                <li><a asp-area="" asp-controller="Profil" asp-action="Profil">Profil</a></li>
+                <li><a asp-area="" asp-controller="Account" asp-action="Profil">Profil</a></li>
             }
 
             <li><a asp-area="" asp-controller="Hardware" asp-action="GeraeteAnsicht">Geräteanzeige</a></li>
@@ -30,7 +30,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-controller="Manage" asp-action="Index">@UserManager.GetUserName(User)</a>
+                <a asp-controller="Account" asp-action="Profil">@UserManager.GetUserName(User)</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
