@@ -132,4 +132,27 @@
 
     });
 </script>
+        <script>
+            $(document).ready(function () {
+                $("#Products tbody tr").remove();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GerateTabelleReloadJson")',
+                    dataType: 'json',
+                    data: { id: $('#Kategorie').val() },
+                    success: function (data) {
+                        //  alert(data.val().ID),
+                        var items = '';
+                        $.each(data, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + item.ean + "</td>"
+                                + "<td>" + item.name + "</td>"
+                                + "</tr>";
+                            $('#Products tbody').append(rows);
+
+                        });
+                    }
+                })
+            });
+        </script>
         }
