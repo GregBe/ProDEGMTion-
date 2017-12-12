@@ -4,88 +4,98 @@
 @model FES.AusleihSystem.Models.GeraeteReservierungModel
 
 
-        <h2>Reservierungen</h2>
+<h2>Reservierungen</h2>
 
-        <div style="width: 150px">
-            <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
-                <div>
-                    <div>
-                        @*<select id="KategorieSelect" name="Kategorie" asp-for="Kategorie" 
-                                asp-items='new SelectList(Model.KategorieList,"ID","Name")' form="form-control"  onchange="Change(this);">
-                            </select>*@
-                        @Html.DropDownList("Kategorie",new SelectList(Model.KategorieList, "ID", "Name"))
-                    </div>
-                    <table border="0">
-                        <tr style="height: 50px">
-                            <td>
-                                <div class="form-group">
-                                    <label asp-for="GeraeteEan"></label>
-                                    <input asp-for="GeraeteEan" class="form-control" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="width: 150px" class="form-group">
-                                    <label asp-for="ReservierungsBeginnZeit"></label>
-                                    <input asp-for="ReservierungsBeginnZeit" class="form-control" />
-                                    <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div style="width: 150px" class="form-group">
-                                    <label asp-for="ReservierungsEndeZeit">Reservierung</label>
-                                    <input asp-for="ReservierungsEndeZeit" class="form-control" />
-                                    <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="width: 150px" class="form-group">
-                                    <label asp-for="ReservierungsBeginn"></label>
-                                    <input asp-for="ReservierungsBeginn" class="form-control" />
-                                    <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div style="width: 150px" class="form-group">
-                                    <label asp-for="ReservierungsEnde"></label>
-                                    <input asp-for="ReservierungsEnde" class="form-control" />
-                                    <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="height: 400px" class="form-group">
-                                    <button style="width: 100px" class="form-control" type="submit">Reservieren</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <span>
-                        <table border="0" id="Products">
-                            <thead>
-                                <tr>
-                                    <th>Artikel Nummer</th>
-                                    <th>Ger&auml;te-Name</th>
+<div>
+    <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
+        <div class="form-group">
+            <table border="0">
+                <thead>
+                    <tr>
+                        <th valign="top" width="150px" style="padding-right:100px">
+                            <div class="form-group" style="width:130px">
+                                <label asp-for="Kategorie"></label>
+                                @Html.DropDownList("Kategorie", new SelectList(Model.KategorieList, "ID", "Name"), new { @class = "form-control" })
+                            </div>
+
+                            <table>
+                                <tr style="height: 50px">
+                                    <td>
+                                        <div class="form-group">
+                                            <label asp-for="GeraeteEan">Geräte-EAN</label>
+                                            <input asp-for="GeraeteEan" class="form-control" />
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </span>
-                </div>
-            </form>
+                                <tr style="height: 50px">
+                                    <td style="padding-right:30px">
+                                        <div class="form-group">
+                                            <label asp-for="ReservierungsBeginn">Reservierungsbeginn</label>
+                                            <input asp-for="ReservierungsBeginn" class="form-control" />
+                                            <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="width: 150px" class="form-group">
+                                            <label asp-for="ReservierungsBeginnZeit">Zeit</label>
+                                            <input asp-for="ReservierungsBeginnZeit" class="form-control" />
+                                            <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="height: 50px">
+                                    <td style="padding-right:30px">
+                                        <div class="form-group">
+                                            <label asp-for="ReservierungsEnde">Reservierungsende</label>
+                                            <input asp-for="ReservierungsEnde" class="form-control" />
+                                            <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div style="width: 150px" class="form-group">
+                                            <label asp-for="ReservierungsEndeZeit">Zeit</label>
+                                            <input asp-for="ReservierungsEndeZeit" class="form-control" />
+                                            <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="height: 400px" class="form-group">
+                                            <button style="width: 100px" class="form-control" type="submit">Reservieren</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </th>
+                        <th valign="top">
+                            <div style="height: 510px; overflow-y: scroll; width:400px">
+                                <label class="form-group">Mögliche Ausleihgeräte</label>
+                                <table border="0" id="Products">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding-left:0">Artikelnummer</th>
+                                            <th style="padding-left:0">Ger&auml;tename</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
         </div>
+    </form>
+</div>
 
 
-    @section Scripts {
-        @await Html.PartialAsync("_ValidationScriptsPartial")
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-<script type="text/javascript">
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script type="text/javascript">
     $(document).ready(function () {
         $('#Kategorie').change(function () {
             $("#Products tbody tr").remove();
@@ -119,5 +129,5 @@
         })
 
     });
-</script>
-        }
+    </script>
+}
