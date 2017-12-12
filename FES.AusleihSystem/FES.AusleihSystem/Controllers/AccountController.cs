@@ -49,6 +49,10 @@ namespace FES.AusleihSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> Profil()
         {
+            if(_signInManager.IsSignedIn(User) == false)
+            {
+                return RedirectToAction("Login");
+            }
             var user = await _nutzer.GetUserAsync(User);
             var model = new AccountModel
             {
@@ -121,7 +125,7 @@ namespace FES.AusleihSystem.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Passwort, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profil");
                 }
                 else
                 {
