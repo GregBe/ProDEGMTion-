@@ -43,20 +43,19 @@ namespace FES.AusleihSystem.Controllers
             IQueryable<GeraetViewModel> gerList;
             var userID = _user.GetUserId(User);
             var userRole = await _user.IsInRoleAsync(await _user.GetUserAsync(User), "Admin");
-            using (var ctx = _context)
-            {
-                foreach (var reservierung in ctx.Reservierungen)
-                {
-                    if (userRole|| reservierung.NutzerID == userID)
-                    {
-                        var posible = ctx.Geraete.Where(g => g.Reservierung != null);
-                        gerList = posible.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);/*ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);*/
-                        reservierung.GeraeteListe = gerList.ToList();
-                        res.Add(reservierung);
-                    }
 
+            foreach (var reservierung in _context.Reservierungen)
+            {
+                if (userRole || reservierung.NutzerID == userID)
+                {
+                    var posible = _context.Geraete.Where(g => g.Reservierung != null);
+                    gerList = posible.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);/*ctx.Geraete.Where(g => g.Reservierung.ReservierungsNummer == reservierung.ReservierungsNummer);*/
+                    reservierung.GeraeteListe = gerList.ToList();
+                    res.Add(reservierung);
                 }
+
             }
+
             return View(res);
         }
 
@@ -177,7 +176,7 @@ namespace FES.AusleihSystem.Controllers
             IQueryable<GeraetViewModel> temp;
 
 
-            temp = _context.Geraete.Where(g => (g.ID == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
+            temp = _context.Geraete.Where(g => (g.EAN == id && g.GeraeteStatus == GeraetViewModel.Status.isVerfugbar));
             if (temp.Count() > 0)
             {
                 foreach (var geraet in temp)

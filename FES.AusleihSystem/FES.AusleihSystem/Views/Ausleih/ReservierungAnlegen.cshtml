@@ -6,9 +6,9 @@
 
         <h2>Reservierungen</h2>
 
-<div style="">
+<div style="" class="table-responsive">
     <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
-        <div class="form-group">
+        <div class="table-responsive">
             <table border="0">
                 <thead>
                     <tr>
@@ -18,7 +18,7 @@
                                 @Html.DropDownList("Kategorie", new SelectList(Model.KategorieList, "ID", "Name"), new { @class = "form-control" })
                             </div>
 
-                            <table>
+                            <table class="table-responsive">
                                 <tr style="height: 50px">
                                     <td>
                                         <div class="form-group">
@@ -78,7 +78,7 @@
                         <th valign="top">
                             <div style="height: 700px; overflow-y: scroll; width:400px">
                                 <label class="form-group">Mögliche Ausleihgeräte</label>
-                                <table border="0" id="Products">
+                                <table border="0" id="Products" class="table-responsive">
                                     <thead style="vertical-align:top">
                                         <tr>
                                             <th style="padding-left:0">Artikelnummer</th>
