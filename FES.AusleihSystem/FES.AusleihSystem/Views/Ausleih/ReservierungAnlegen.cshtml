@@ -4,106 +4,99 @@
 @model FES.AusleihSystem.Models.GeraeteReservierungModel
 
 
-        <h2>Reservierungen</h2>
+<h2>Reservierungen</h2>
 
-<div style="" class="table-responsive">
-    <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
-        <div class="table-responsive">
-            <table border="0">
-                <thead>
+<div class="row">
+    <div class="col-lg-6">
+        <form asp-controller="Ausleih" asp-action="ReservierungAnlegen" method="post">
+            <div class="form-group">
+                <div class="form-group" style="width:130px">
+                    <label style="margin-bottom:15px" asp-for="Kategorie"></label>
+                    @Html.DropDownList("Kategorie", new SelectList(Model.KategorieList, "ID", "Name"), new { @class = "form-control" })
+                </div>
+
+                <table>
+                    <tr style="height: 50px">
+                        <td>
+                            <div class="form-group">
+                                <label asp-for="GeraeteEan">Geräte-EAN</label>
+                                <input asp-for="GeraeteEan" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td style="padding-right:30px">
+                            <div class="form-group">
+                                <label asp-for="ReservierungsBeginn">Reservierungsbeginn</label>
+                                <input asp-for="ReservierungsBeginn" class="form-control" />
+                                <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="width: 150px" class="form-group">
+                                <label asp-for="ReservierungsBeginnZeit">Zeit</label>
+                                <label asp-for="ReservierungsBeginnZeit">
+                                    @Html.TextBoxFor(x => x.ReservierungsBeginnZeit, "{0:HH:mm}", new { @class = "form-control", })
+                                </label>
+                                @*<input  class="form-control"/>*@
+                                <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td style="padding-right:30px">
+                            <div class="form-group">
+                                <label asp-for="ReservierungsEnde">Reservierungsende</label>
+                                <input asp-for="ReservierungsEnde" class="form-control" />
+                                <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div style="width: 150px" class="form-group">
+                                <label asp-for="ReservierungsEndeZeit">Zeit</label>
+                                <label asp-for="ReservierungsEndeZeit">
+                                    @Html.TextBoxFor(x => x.ReservierungsEndeZeit, "{0:HH:mm}", new { @class = "form-control", })
+                                </label>
+                                @*<input asp-for="ReservierungsEndeZeit" class="form-control" />*@
+                                <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
-                        <th valign="top" width="150px"  style="padding-right:100px">
-                            <div class="form-group" style="width:130px">
-                                <label style="margin-bottom:15px" asp-for="Kategorie"></label>
-                                @Html.DropDownList("Kategorie", new SelectList(Model.KategorieList, "ID", "Name"), new { @class = "form-control" })
+                        <td>
+                            <div class="form-group">
+                                <button style="max-width: 100px" class="form-control" type="submit">Reservieren</button>
                             </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
 
-                            <table class="table-responsive">
-                                <tr style="height: 50px">
-                                    <td>
-                                        <div class="form-group">
-                                            <label asp-for="GeraeteEan">Geräte-EAN</label>
-                                            <input asp-for="GeraeteEan" class="form-control"/>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr style="height: 50px">
-                                    <td style="padding-right:30px">
-                                        <div class="form-group">
-                                            <label asp-for="ReservierungsBeginn">Reservierungsbeginn</label>
-                                            <input asp-for="ReservierungsBeginn" class="form-control" />
-                                            <span asp-validation-for="ReservierungsBeginn" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div style="width: 150px" class="form-group">
-                                            <label asp-for="ReservierungsBeginnZeit">Zeit</label>
-                                            <label asp-for="ReservierungsBeginnZeit">
-                                                @Html.TextBoxFor(x => x.ReservierungsBeginnZeit, "{0:HH:mm}", new { @class = "form-control", })
-                                            </label>
-                                            @*<input  class="form-control"/>*@
-                                            <span asp-validation-for="ReservierungsBeginnZeit" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr style="height: 50px">
-                                    <td style="padding-right:30px">
-                                        <div class="form-group">
-                                            <label asp-for="ReservierungsEnde">Reservierungsende</label>
-                                            <input asp-for="ReservierungsEnde" class="form-control" />
-                                            <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
-                                        </div>
-
-                                    </td>
-                                    <td>
-                                        <div style="width: 150px" class="form-group">
-                                            <label asp-for="ReservierungsEndeZeit">Zeit</label>
-                                            <label asp-for="ReservierungsEndeZeit">
-                                                @Html.TextBoxFor(x => x.ReservierungsEndeZeit, "{0:HH:mm}", new { @class = "form-control", })
-                                            </label>
-                                            @*<input asp-for="ReservierungsEndeZeit" class="form-control" />*@
-                                            <span asp-validation-for="ReservierungsEnde" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div style="height: 400px" class="form-group">
-                                            <button style="width: 100px" class="form-control" type="submit">Reservieren</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </th>
-                        <th valign="top">
-                            <div style="height: 550px; overflow-y: scroll; width:400px">
-                                <label class="form-group">Mögliche Ausleihgeräte</label>
-                                <table border="0" id="Products" class="table-responsive">
-                                    <thead style="vertical-align:top">
-                                        <tr>
-                                            <th style="padding-left:0">Artikelnummer</th>
-                                            <th style="padding-left:0">Ger&auml;tename</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </th>
+    <div class="col-lg-6" style="max-height:550px">
+        <div style="height: 550px; overflow-y: scroll">
+            <label class="form-group">Mögliche Ausleihgeräte</label>
+            <table border="0" id="Products" style="width:auto">
+                <thead style="vertical-align:top">
+                    <tr>
+                        <th style="padding-left:0">Artikelnummer</th>
+                        <th style="padding-left:0">Ger&auml;tename</th>
                     </tr>
                 </thead>
+                <tbody></tbody>
             </table>
         </div>
-    </form>
+    </div>
 </div>
 
 
-    @section Scripts {
-        @await Html.PartialAsync("_ValidationScriptsPartial")
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-<script type="text/javascript">
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script type="text/javascript">
     $(document).ready(function () {
         $('#Kategorie').change(function () {
             $("#Products tbody tr").remove();
@@ -137,8 +130,8 @@
         })
 
     });
-</script>
-        <script>
+    </script>
+    <script>
             $(document).ready(function () {
                 $("#Products tbody tr").remove();
                 $.ajax({
@@ -160,5 +153,5 @@
                     }
                 })
             });
-        </script>
-        }
+    </script>
+}
