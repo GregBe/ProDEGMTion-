@@ -17,7 +17,7 @@
             @foreach (var ger in Model)
             {
                 <tr>
-                    <th style="font-weight:normal">@ger.ID</th>
+                    <th style="font-weight:normal">@ger.EAN</th>
                     <th style="font-weight:normal">@ger.Name</th>
                     <th style="font-weight:normal">@ger.Kategorie</th>
                     <th style="font-weight:normal">@StringEnum.GetStringValue(ger.GeraeteStatus)</th>

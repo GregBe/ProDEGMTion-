@@ -60,7 +60,7 @@ namespace FES.AusleihSystem.Controllers
 
         private Gerate[] Namen = new Gerate[]
         {
-            new Gerate(){Name="Lenove", Kategorie="Laptop"},
+            new Gerate(){Name="Lenovo", Kategorie="Laptop"},
             new Gerate(){Name="Dell", Kategorie="Laptop"},
             new Gerate(){Name="HP", Kategorie="PC"},
             new Gerate(){Name="HP", Kategorie="Sonstiges"},
@@ -141,7 +141,7 @@ namespace FES.AusleihSystem.Controllers
             //Geräte Seeding
             for (int i = 0; i < SeedSize; i++)
             {
-                name = ran.Next(0, 6);
+                name = ran.Next(0, 9);
                 var catint = ran.Next(1, 4);
                 ean = ran.Next(10000000, 99999999);
                 var mod = Namen[name];
